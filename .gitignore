@@ -133,7 +133,9 @@ dist
 
 # dependencies
 /Frontend/node_modules
+/Frontend/test-project/node_modules
 /Backend/node_modules
+
 # /node_modules
 /.pnp
 .pnp.js
