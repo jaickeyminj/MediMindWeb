@@ -121,6 +121,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: scroll;
 }
 
 .offcanvas {
@@ -130,6 +131,16 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   max-width: 500px; /* Limiting the maximum width */
   width: 100%; /* Make sure it takes full width */
+  
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
 .form-group {
@@ -138,16 +149,20 @@
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
-  width: calc(100% - 22px); /* Adjusting width to accommodate the padding and border */
+input[type="password"],
+input[type="date"],
+select {
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 button {
-  padding: 10px 20px;
-  background: #007bff;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -155,9 +170,22 @@ button {
 }
 
 button:hover {
-  background: #0056b3;
+  background-color: #0056b3;
 }
+
+p {
+  margin-top: 15px;
+  text-align: center;
+  cursor: pointer;
+  color: #007bff;
+}
+
+p:hover {
+  text-decoration: underline;
+}
+
 .close-btn{
   background-color: rgb(173, 18, 18);
+  max-width: 30px;
 }
 
