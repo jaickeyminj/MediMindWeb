@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const googleMeet = require("google-meet");
 
 
 const {patientSignup, patientLogin, updatePatientData} = require("../Controllers/patientAuth");
 const {consultantSignup, consultantLogin } = require("../Controllers/consultantAuth");
 const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = require("../Controllers/searchConsultant");
 const {createAppointment, getRequestedAppointmentList } = require("../Controllers/appointment");
+const {meet} = require("../Controllers/googlemeet");
 
 //const upload = require("../middlewares/multer");
 
@@ -30,6 +32,8 @@ router.post("/patient/RequestAppointment", createAppointment);
 router.post("/consultant/login",consultantLogin);  
 router.post("/consultant/signup", consultantSignup);
 router.get("/consultant/getRequestedAppointmentList",getRequestedAppointmentList); 
+
+router.post("/generate-meet-link",meet);
 
 // router.post("/consultant/ApproveDeclineAppoinmentRequest", consultantSignup);
 // router.post("/consultant/getAppointmentList",consultantLogin);  

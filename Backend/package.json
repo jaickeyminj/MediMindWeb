@@ -5,6 +5,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.2",
     "express": "^4.18.3",
+    "google-auth-library": "^9.7.0",
     "google-meet": "^1.0.0",
     "googleapis": "^134.0.0",
     "jsonwebtoken": "^9.0.2",
@@ -13,17 +14,14 @@
     "nodemon": "^3.0.3",
     "otp-generator": "^4.0.1"
   },
-  "name": "backend",
+  "name": "medimind-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "name": "medimind-backend",
   "description": "MediMind is a medical consultancy application designed to support end-users through online consultations. It provides a range of features including patient registration, doctor registration, storing patient and doctor details, categorizing diseases based on symptoms, managing patient appointments, and displaying doctor availability.",
-  "version": "1.0.0",
-  "main": "server.js",
   "keywords": [],
   "author": "",
   "license": "ISC"
