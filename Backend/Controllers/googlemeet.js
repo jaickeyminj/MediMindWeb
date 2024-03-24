@@ -1,18 +1,36 @@
-const express = require('express');
-const googleMeet = require("google-meet");
+const { google } = require('googleapis');
+const { JWT } = require('google-auth-library');
 
-const app = express();
+const credentials = require('../medimindweb-5bfc04d20be4.json');
 
-exports.meet = async (req, res) => {
-    const meeting = await googleMeet.createMeeting();
+const jwtClient = new JWT({
+  email: credentials.client_email,
+  key: credentials.private_key,
+  scopes: ['https://www.googleapis.com/auth/calendar'], // You can add more scopes as needed
+});
 
-  // Get the meeting link.
-    const meetingLink = meeting.link;
-    console.log(meetingLink);
-  // Send the meeting link to the client.
-//   res.send(meetingLink);
-    return res.status(200).json({
-        success: true,
-        message: 'meet'+ meetingLink,
-    });
-}
+// Authorize the client
+jwtClient.authorize((err, tokens) => {
+  if (err) {
+    console.error('Authentication error:', err);
+    return;
+  }
+
+  // Your Google Meet API calls go here
+  // Example: Create a new meeting
+  const meet = google.meet({ version: 'v1', auth: jwtClient });
+  meet.events.create(
+    {
+      requestBody: {
+        // Meeting details here
+      },
+    },
+    (err, response) => {
+      if (err) {
+        console.error('Error creating meeting:', err);
+        return;
+      }
+      console.log('Meeting created:', response.data);
+    }
+  );
+});
