@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="logo">
-        <h1><Link to="/"><img src="\images\logo.PNG" alt="logo" /></Link></h1>
+        <h1><Link to="/"><img src="/images/logo.png" alt="logo" /></Link></h1>
       </div>
       <ul className="nav-links">
         <li><p onClick={() => setCurrentState("services")}>Services</p></li>

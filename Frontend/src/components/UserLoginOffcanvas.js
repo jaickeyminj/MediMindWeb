@@ -10,32 +10,68 @@ const UserLoginOffcanvas = ({ onClose }) => {
     bloodGroup: '',
     gender: '', // New field
     dob: '',
-    address:{
-      city: 'ss',
-      state: 'dsd',
-      country: 'dasd'
+    address: {
+      city: '',
+      state: '',
+      country: ''
     }
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (name.startsWith('address.')) {
+      // If it's an address field, update nested state
+      const addressField = name.split('.')[1];
+      setFormData(prevState => ({
+        ...formData,
+        address: {
+          ...formData.address,
+          [addressField]: value
+        }
+      }));
+    } else {
+      // If it's not an address field, update regular state
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    // Add your login submission logic here
-    console.log('Login:', formData.email, formData.password);
+    try {
+      const response = await fetch('http://localhost:27017/api/v1/patient/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password
+        }),
+      });
+      if (response.ok) {
+        // Login successful
+        alert('Login successful!');
+        // Optionally, you can redirect the user or perform any other actions here
+      } else {
+        // Handle error response
+        const errorData = await response.json();
+        alert('Login failed: ' + errorData.message);
+      }
+    } catch (error) {
+      // Handle network errors
+      console.error('Error:', error);
+      alert('Login failed. Please try again later.');
+    }
   };
 
   const handleRegistrationSubmit = async (e) => {
     e.preventDefault();
     // Validation
-    if (!formData.name || !formData.email || !formData.mobile || !formData.bloodGroup || !formData.dob || !formData.password || !formData.gender || !formData.address.city || !formData.address.state || !formData.address.country) {
+    if (!formData.name || !formData.email || !formData.mobileNo || !formData.bloodGroup || !formData.dob || !formData.password || !formData.gender || !formData.address.city || !formData.address.state || !formData.address.country) {
       alert('Please fill in all fields.');
       return;
     }
-  
+
     try {
       const response = await fetch('http://localhost:27017/api/v1/patient/signup', {
         method: 'POST',
@@ -90,7 +126,7 @@ const UserLoginOffcanvas = ({ onClose }) => {
                 <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
               </div>
               <div className="form-group">
-                <input type="text" name="mobile" placeholder="Mobile Number" value={formData.mobileNo} onChange={handleChange} required />
+                <input type="text" name="mobileNo" placeholder="Mobile Number" value={formData.mobileNo} onChange={handleChange} required />
               </div>
               <div className="form-group">
                 <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
@@ -117,13 +153,20 @@ const UserLoginOffcanvas = ({ onClose }) => {
                 </select>
               </div>
               <div className="form-group">
-                
                 <input type="date" name="dob" value={formData.dob} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <input type="text" name="address.city" placeholder="City" value={formData.address.city} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <input type="text" name="address.state" placeholder="State" value={formData.address.state} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <input type="text" name="address.country" placeholder="Country" value={formData.address.country} onChange={handleChange} required />
               </div>
               <div className="form-group">
                 <input type="password" name="password" placeholder="Set Password" value={formData.password} onChange={handleChange} required />
               </div>
-              
               <button type="submit">Register</button>
               <p onClick={toggleMode}>Already registered? Login here.</p>
             </form>
