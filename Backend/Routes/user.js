@@ -3,9 +3,9 @@ const router = express.Router();
 
 
 const {patientSignup, patientLogin, updatePatientData} = require("../Controllers/patientAuth");
-const {consultantSignup, consultantLogin } = require("../Controllers/consultantAuth");
+const {consultantSignup, consultantLogin, updateAvailabilityTime } = require("../Controllers/consultantAuth");
 const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = require("../Controllers/searchConsultant");
-const {createAppointment, getRequestedAppointmentList } = require("../Controllers/appointment");
+const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest } = require("../Controllers/appointment");
 
 //const upload = require("../middlewares/multer");
 
@@ -16,10 +16,9 @@ router.post("/patient/getAllConsultants", getAllConsultants);
 router.get("/patient/getConsultantsData", getConsultantsData);
 router.post("/patient/updatePatientData", updatePatientData);
 router.post("/patient/RequestAppointment", createAppointment);
+router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient);
 
 
-// router.get("/patient/getRequestedAppointment", patientSignup);
-// router.get("/patient/getConfimedAppointment", patientSignup);
 // router.post("/patient/uploadReports", patientSignup);
 // router.get("/patient/getReports", patientSignup);
 
@@ -29,12 +28,17 @@ router.post("/patient/RequestAppointment", createAppointment);
 
 router.post("/consultant/login",consultantLogin);  
 router.post("/consultant/signup", consultantSignup);
-router.get("/consultant/getRequestedAppointmentList",getRequestedAppointmentList); 
+router.get("/consultant/getRequestedAppointmentList",getRequestedAppointmentList);
+router.post("/consultant/acceptAppointmentRequest",acceptAppointmentRequest);
+router.post("/consultant/rejectAppointmentRequest",rejectAppointmentRequest);
+router.get("/consultant/getScheduledAppointmentsForConsultant",getScheduledAppointmentsForConsultant);
+router.post("/consultant/updateAvailabilityTime",updateAvailabilityTime); 
 
-// router.post("/consultant/ApproveDeclineAppoinmentRequest", consultantSignup);
-// router.post("/consultant/getAppointmentList",consultantLogin);  
+
+
+
+
 // router.post("/consultant/getPatientReport", consultantSignup);
-// router.post("/consultant/updateAvailibilityTime",consultantLogin);  
 // router.post("/consultant/updloadPrescription", consultantSignup);
 // router.post("/consultant/updateProfile",consultantLogin);  
 

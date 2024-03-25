@@ -1,7 +1,26 @@
 const Consultant = require("../models/consultant");
+const jwt = require('jsonwebtoken');
 
 exports.searchConsultantBySpecialty = async (req, res) => {
     try {
+
+        const authorizationHeader = req.headers['authorization'];
+        const token = authorizationHeader ? authorizationHeader.substring('Bearer '.length) : null;
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: 'Token not provided',
+            });
+        }
+
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Invalid token',
+                });
+            }
+
         const { specification } = req.body;
 
         const consultants = await Consultant.find({ specification: specification });
@@ -11,6 +30,7 @@ exports.searchConsultantBySpecialty = async (req, res) => {
             message: 'Consultants found successfully',
             consultants,
         });
+    });
     } catch (error) {
         console.error(error);
         return res.status(500).json({
@@ -39,6 +59,25 @@ exports.getAllConsultants = async (req, res) => {
 
 exports.getConsultantsData = async (req, res) => {
     try {
+
+        const authorizationHeader = req.headers['authorization'];
+        const token = authorizationHeader ? authorizationHeader.substring('Bearer '.length) : null;
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: 'Token not provided',
+            });
+        }
+
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Invalid token',
+                });
+            }
+
+
         const { id } = req.body;
 
 
@@ -50,6 +89,7 @@ exports.getConsultantsData = async (req, res) => {
             message: 'Consultants found successfully',
             consultants,
         });
+    });
     } catch (error) {
         console.error(error);
         return res.status(500).json({

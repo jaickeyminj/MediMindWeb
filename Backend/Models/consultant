@@ -37,6 +37,10 @@ const consultantSchema = new Schema({
         type: String,
         required: true
     },
+    charge:{
+        type: Number,
+        required: true
+    },
     password: {
         type: String,
         required: true
