@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const UserLoginOffcanvas = ({ onClose }) => {
   const [loginMode, setLoginMode] = useState(true); // State to toggle between login and registration mode
@@ -8,7 +9,7 @@ const UserLoginOffcanvas = ({ onClose }) => {
     name: '',
     mobileNo: '',
     bloodGroup: '',
-    gender: '', // New field
+    gender: '',
     dob: '',
     address: {
       city: '',
@@ -16,6 +17,8 @@ const UserLoginOffcanvas = ({ onClose }) => {
       country: ''
     }
   });
+
+  const history = useHistory();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,9 +52,12 @@ const UserLoginOffcanvas = ({ onClose }) => {
         }),
       });
       if (response.ok) {
-        // Login successful
-        alert('Login successful!');
-        // Optionally, you can redirect the user or perform any other actions here
+        const data = await response.json();
+        // Store token and _id in local storage
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('_id', data.patient._id);
+        // Redirect to the patient dashboard
+        history.push('/patient-dashboard');
       } else {
         // Handle error response
         const errorData = await response.json();

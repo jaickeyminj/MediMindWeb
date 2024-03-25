@@ -189,3 +189,44 @@ p:hover {
   max-width: 30px;
 }
 
+/*patient dashboard */
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar ul li a:hover {
+  color: #555;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Add more styling as needed */
+
+

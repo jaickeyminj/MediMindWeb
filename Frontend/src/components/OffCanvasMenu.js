@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import UserLoginOffcanvas from './UserLoginOffcanvas';
-
+import ConsultantLoginOffcanvas from './ConsultantLoginOffcanvas';
 
 const OffCanvasMenu = ({ onClose }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -8,7 +8,7 @@ const OffCanvasMenu = ({ onClose }) => {
 
   const handleLoginOptionSelect = (option) => {
     setSelectedOption(option);
-    if (option === 'patient') {
+    if (option === 'patient' || option === 'consultant') {
       setShowMenu(false);
     }
   };
@@ -40,16 +40,17 @@ const OffCanvasMenu = ({ onClose }) => {
                 <input
                   type="radio"
                   name="loginOption"
-                  value="doctor"
-                  checked={selectedOption === 'doctor'}
-                  onChange={() => handleLoginOptionSelect('doctor')}
+                  value="consultant"
+                  checked={selectedOption === 'consultant'}
+                  onChange={() => handleLoginOptionSelect('consultant')}
                 />
-                Doctor Login
+                Consultant Login
               </label>
             </div>
           </>
         ) : null}
         {selectedOption === 'patient' && <UserLoginOffcanvas onClose={onClose} />}
+        {selectedOption === 'consultant' && <ConsultantLoginOffcanvas onClose={onClose} />}
       </div>
     </div>
   );
