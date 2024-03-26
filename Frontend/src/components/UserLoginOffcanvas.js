@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import PatientDashboard from './PatientDashboard';
 
 const UserLoginOffcanvas = ({ onClose }) => {
   const [loginMode, setLoginMode] = useState(true); // State to toggle between login and registration mode
@@ -17,8 +18,7 @@ const UserLoginOffcanvas = ({ onClose }) => {
       country: ''
     }
   });
-
-  const history = useHistory();
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,8 +56,9 @@ const UserLoginOffcanvas = ({ onClose }) => {
         // Store token and _id in local storage
         localStorage.setItem('token', data.token);
         localStorage.setItem('_id', data.patient._id);
-        // Redirect to the patient dashboard
-        history.push('/patient-dashboard');
+        localStorage.setItem('name', data.patient.name);
+        // Set loggedIn to true
+        setLoggedIn(true);
       } else {
         // Handle error response
         const errorData = await response.json();
@@ -110,25 +111,26 @@ const UserLoginOffcanvas = ({ onClose }) => {
     <div className="offcanvas-container" onClick={onClose}>
       <div className="offcanvas" onClick={(e) => e.stopPropagation()}>
         <button className="close-btn" onClick={onClose}>X</button>
-        {loginMode ? (
-          <>
-            <form onSubmit={handleLoginSubmit}>
-              <h2>User Login</h2>
-              <div className="form-group">
-                <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-              </div>
-              <div className="form-group">
-                <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-              </div>
-              <button type="submit">Login</button>
-              <p onClick={toggleMode}> Not registered yet? Register here.</p>
-            </form>
-          </>
+        {loggedIn ? (
+          <Link to="/patientdashboard">Go to Patient DashBoard</Link>
         ) : (
           <>
-            <form onSubmit={handleRegistrationSubmit}>
-              <h2>User Registration</h2>
-              <div className="form-group">
+            {loginMode ? (
+              <form onSubmit={handleLoginSubmit}>
+                <h2>User Login</h2>
+                <div className="form-group">
+                  <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
+                </div>
+                <button type="submit">Login</button>
+                <p onClick={toggleMode}> Not registered yet? Register here.</p>
+              </form>
+            ) : (
+              <form onSubmit={handleRegistrationSubmit}>
+                <h2>User Registration</h2>
+                <div className="form-group">
                 <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
               </div>
               <div className="form-group">
@@ -171,16 +173,18 @@ const UserLoginOffcanvas = ({ onClose }) => {
                 <input type="text" name="address.country" placeholder="Country" value={formData.address.country} onChange={handleChange} required />
               </div>
               <div className="form-group">
-                <input type="password" name="password" placeholder="Set Password" value={formData.password} onChange={handleChange} required />
-              </div>
-              <button type="submit">Register</button>
+              <input type="password" name="password" placeholder="Set Password" value={formData.password} onChange={handleChange} required />
+            </div>
+            <button type="submit">Register</button>
               <p onClick={toggleMode}>Already registered? Login here.</p>
             </form>
-          </>
-        )}
-      </div>
+          )}
+        </>
+      )}
     </div>
-  );
+</div>
+);
 };
 
 export default UserLoginOffcanvas;
+
