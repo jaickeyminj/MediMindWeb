@@ -1,45 +1,56 @@
 import React, { useState } from 'react';
+import DoctorDetails from './DoctorDetails';
+
 const SearchDoctor = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedOption, setSelectedOption] = useState('');
-  const [consultants, setConsultants] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedOption, setSelectedOption] = useState('');
+    const [consultants, setConsultants] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [selectedDoctorId, setSelectedDoctorId] = useState(null);
 
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+    const handleInputChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
 
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
 
-  const handleSearch = async () => {
-    setIsLoading(true);
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:27017/api/v1/patient/SearchConsultant', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ "specification": selectedOption })
-      });
+    const handleSearch = async () => {
+        setIsLoading(true);
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://localhost:27017/api/v1/patient/SearchConsultant', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ "specification": selectedOption })
+            });
 
-      if (response.ok) {
-        const data = await response.json();
-        setConsultants(data.consultants);
-      } else {
-        console.error('Error searching for consultants:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error searching for consultants:', error);
-    }
-    setIsLoading(false);
-  };
+            if (response.ok) {
+                const data = await response.json();
+                setConsultants(data.consultants);
+            } else {
+                console.error('Error searching for consultants:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error searching for consultants:', error);
+        }
+        setIsLoading(false);
+    };
 
-  return (
-    <div className="search-container">
+    const handleViewDetails = (doctorId) => {
+        console.log(doctorId)
+        setSelectedDoctorId(doctorId);
+    };
+
+    return (
+        <div className="search-container">
+            {selectedDoctorId && <DoctorDetails doctorId={selectedDoctorId} />}
+            {!selectedDoctorId &&
+            <div>
       <select value={selectedOption} onChange={handleSelectChange}>
         <option value="">Select doctor's specialty</option>
         <option value="General Physician">General Physician</option>
@@ -75,27 +86,30 @@ const SearchDoctor = () => {
         <option value="Surgeon">Surgeon</option>
         <option value="Urologist">Urologist</option>
       </select>
-      <button onClick={handleSearch} className="search-button">Search</button>
+      <button onClick={handleSearch}>Search</button>
 
       {isLoading && <div>Loading...</div>}
-      {!isLoading && consultants.length > 0 && (
-        <div className="consultants-list">
-          <h2>Consultants</h2>
-          <ul>
-            {consultants.map((consultant) => (
-              <li key={consultant._id}>
-                <h3>{consultant.name}</h3>
-                <p>Gender: {consultant.gender}</p>
-                <p>Specialization: {consultant.specification}</p>
-                <p>Charge: ${consultant.charge}</p>
-                <p>Available Times: {consultant.availabilityTime.join(', ')}</p>
-              </li>
-            ))}
-          </ul>
+            {!isLoading && consultants.length > 0 && (
+                <div className="consultants-list">
+                    <h2>Consultants</h2>
+                    <ul>
+                        {consultants.map((consultant) => (
+                            <li key={consultant._id}>
+                                <h3>{consultant.name}</h3>
+                                <p>Gender: {consultant.gender}</p>
+                                <p>Specialization: {consultant.specification}</p>
+                                <p>Charge: ${consultant.charge}</p>
+                                <p>Available Times: {consultant.availabilityTime.join(', ')}</p>
+                                <button onClick={() => handleViewDetails(consultant._id)}>View Details</button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+            </div>
+            }
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default SearchDoctor;
