@@ -39,8 +39,8 @@ app.get("/google/redirect", async (req, res) => {
     try {
         const { tokens } = await oauth2Client.getToken(code);
         oauth2Client.setCredentials(tokens);
-        console.log(tokens);
-        console.log(oauth2Client);
+        // console.log(tokens);
+        // console.log(oauth2Client);
         res.redirect("/schedule");
         // res.send("Authentication successful. You can now access Google Calendar API.");
     } catch (error) {
@@ -77,7 +77,7 @@ app.get("/schedule",async(req,res)=>{
         }
         // resource: event,
       });
-      console.log("Scheduling Meeting");
+    //   console.log("Scheduling Meeting");
       console.log(result);
       res.send({
         msg:"DONE",
