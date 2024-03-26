@@ -29,6 +29,7 @@ router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient
 router.post("/consultant/login",consultantLogin);  
 router.post("/consultant/signup", consultantSignup);
 router.get("/consultant/getRequestedAppointmentList",getRequestedAppointmentList);
+
 router.post("/consultant/acceptAppointmentRequest",acceptAppointmentRequest);
 router.post("/consultant/rejectAppointmentRequest",rejectAppointmentRequest);
 router.get("/consultant/getScheduledAppointmentsForConsultant",getScheduledAppointmentsForConsultant);
