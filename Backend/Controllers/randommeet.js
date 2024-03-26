@@ -4,6 +4,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import {v4 as uuid} from "uuid";
 const app = express();
+// require("dotenv").config();
 
 const PORT = 8000;
 
@@ -38,7 +39,10 @@ app.get("/google/redirect", async (req, res) => {
     try {
         const { tokens } = await oauth2Client.getToken(code);
         oauth2Client.setCredentials(tokens);
-        res.send("Authentication successful. You can now access Google Calendar API.");
+        // console.log(tokens);
+        // console.log(oauth2Client);
+        res.redirect("/schedule");
+        // res.send("Authentication successful. You can now access Google Calendar API.");
     } catch (error) {
         console.error("Error exchanging code for tokens:", error);
         res.status(500).send("Failed to authenticate with Google Calendar API.");
@@ -52,8 +56,8 @@ app.get("/schedule",async(req,res)=>{
         calendarId: 'primary',
         conferenceDataVersion:1,
         requestBody :{
-            summary :"test event",
-            description : "OKAY ",
+            summary :"Doctor's Appointment",
+            description : "MediMind Health Care ",
             start :{
                 dateTime : dayjs(new Date()).add(1,'day').toISOString(),
                 timeZone : "Asia/Kolkata",
@@ -68,15 +72,16 @@ app.get("/schedule",async(req,res)=>{
                 }
             },
             attendees:[{
-                email:"jaickeyj@iitbhilai.ac.in",
+                email:"jaickey09@gmail.com",
             }]
         }
         // resource: event,
       });
-      console.log("Schedule");
+    //   console.log("Scheduling Meeting");
       console.log(result);
       res.send({
-        msg:"DONE"
+        msg:"DONE",
+        link:result.data.hangoutLink,
       })
     });
 
