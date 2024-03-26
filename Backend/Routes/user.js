@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 
-const {patientSignup, patientLogin, updatePatientData} = require("../Controllers/patientAuth");
-const {consultantSignup, consultantLogin, updateAvailabilityTime } = require("../Controllers/consultantAuth");
+const {patientSignup, patientLogin, updatePatientData, validateTokenPatient} = require("../Controllers/patientAuth");
+const {consultantSignup, consultantLogin, updateAvailabilityTime, validateTokenConsultant } = require("../Controllers/consultantAuth");
 const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = require("../Controllers/searchConsultant");
 const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest } = require("../Controllers/appointment");
 
@@ -11,15 +11,16 @@ const {createAppointment, getallAppointmentsForPatient, getScheduledAppointments
 
 router.post("/patient/login",patientLogin);  
 router.post("/patient/signup", patientSignup);
+router.post("/patient/validateTokenPatient", validateTokenPatient);
 router.post("/patient/SearchConsultant", searchConsultantBySpecialty);
 router.post("/patient/getAllConsultants", getAllConsultants);
 router.get("/patient/getConsultantsData", getConsultantsData);
 router.post("/patient/updatePatientData", updatePatientData);
 router.post("/patient/RequestAppointment", createAppointment);
 router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient);
+//router.post("/patient/uploadReports", upload.single("image"), patientSignup);
 
 
-// router.post("/patient/uploadReports", patientSignup);
 // router.get("/patient/getReports", patientSignup);
 
 // router.post("/patient/ConsultantFeedback", patientSignup);
@@ -28,12 +29,14 @@ router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient
 
 router.post("/consultant/login",consultantLogin);  
 router.post("/consultant/signup", consultantSignup);
+router.post("/consultant/validateTokenConsultant", validateTokenConsultant);
 router.get("/consultant/getRequestedAppointmentList",getRequestedAppointmentList);
 
 router.post("/consultant/acceptAppointmentRequest",acceptAppointmentRequest);
 router.post("/consultant/rejectAppointmentRequest",rejectAppointmentRequest);
 router.get("/consultant/getScheduledAppointmentsForConsultant",getScheduledAppointmentsForConsultant);
 router.post("/consultant/updateAvailabilityTime",updateAvailabilityTime); 
+
 
 
 

@@ -133,3 +133,36 @@ exports.updateAvailabilityTime = async (req, res) => {
             });
         }
 };
+
+exports.validateTokenConsultant = async (req, res) => {
+    try {
+        const authorizationHeader = req.headers['authorization'];
+        const token = authorizationHeader ? authorizationHeader.substring('Bearer '.length) : null;
+      
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: 'Token not provided for Consultant',
+            });
+        }
+      
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Invalid token for Consultant',
+                });
+            }
+            return res.status(200).json({
+                success: true,
+                message: 'Validated Consultant token successfully',
+            });
+        }); 
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal Server Error',
+        });
+    }
+};
