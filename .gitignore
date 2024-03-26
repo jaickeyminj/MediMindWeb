@@ -156,3 +156,5 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/Backend/medimindweb-5bfc04d20be4.json
