@@ -1,14 +1,88 @@
-const Meeting = require('google-meet-api').meet;
+// import  express  from "express";
+const { google } = require("googleapis");
+// const axios = require("axios");
+const dayjs = require("dayjs");
+const { v4: uuid } = require("uuid");
 
-Meeting({
-clientId : '900631543829-0jjagfht4m75ehgv3in45elahvikhf6l.apps.googleusercontent.com',
-clientSecret : "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",
-refreshToken : 'XXXXXXXXXCNfW2MMGvJUSk4V7LplXAXXXX',
-date : "2020-12-01",
-time : "10:59",
-summary : 'summary',
-location : 'location',
-description : 'description'
-}).then(function(result){
-console.log(result);//result is the final link
-})
+const calendar = google.calendar({
+    version: "v3",
+    auth: "AIzaSyAP3XDcxV3PJM6RFwAriZ63POcy5K8IjIE"
+});
+
+const oauth2Client = new google.auth.OAuth2(
+    "976403191613-mth034ign9t4tskbu3na420cl8cbdap1.apps.googleusercontent.com",
+    "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",
+    "http://localhost:27017/api/v1/patient/handleGoogleRedirect"
+);
+
+const scopes = [
+    'https://www.googleapis.com/auth/calendar'
+];
+
+async function redirectToGoogle(req, res) {
+    console.log("redirect");
+    const URL = oauth2Client.generateAuthUrl({
+        access_type: 'offline',
+        scope: scopes
+    });
+
+    res.redirect(URL);
+}
+
+async function handleGoogleRedirect(req, res) {
+    const code = req.query.code;
+    try {
+        const { tokens } = await oauth2Client.getToken(code);
+        oauth2Client.setCredentials(tokens);
+        // console.log(tokens);
+        // console.log(oauth2Client);
+        res.redirect("/api/v1/patient/scheduleEvent");
+    } catch (error) {
+        console.error("Error exchanging code for tokens:", error);
+        res.status(500).send("Failed to authenticate with Google Calendar API.");
+    }
+}
+
+async function scheduleEvent(req, res) {
+    try {
+        const result = await calendar.events.insert({
+            auth: oauth2Client,
+            calendarId: 'primary',
+            conferenceDataVersion: 1,
+            requestBody: {
+                summary: "Doctor's Appointment",
+                description: "MediMind Health Care ",
+                start: {
+                    dateTime: dayjs(new Date()).add(1, 'day').toISOString(),
+                    timeZone: "Asia/Kolkata",
+                },
+                end: {
+                    dateTime: dayjs(new Date()).add(1, 'day').add(1, 'hour').toISOString(),
+                    timeZone: "Asia/Kolkata",
+                },
+                conferenceData: {
+                    createRequest: {
+                        requestId: uuid(),
+                    }
+                },
+                attendees: [{
+                    email: "jaickey09@gmail.com",
+                }]
+            }
+        });
+        // console.log("Scheduling Meeting");
+        console.log(result.data.hangoutLink);
+        res.status(500).json({
+            success:"true",
+            msg: "Link Generated",
+            link: result.data.hangoutLink,
+        });
+    } catch (error) {
+        console.error("Error scheduling event:", error);
+        res.status(500).send("Failed to schedule event.");
+    }
+}
+
+exports.redirectToGoogle = redirectToGoogle;
+exports.handleGoogleRedirect = handleGoogleRedirect;
+exports.scheduleEvent = scheduleEvent;
