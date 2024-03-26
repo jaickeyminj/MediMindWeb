@@ -72,7 +72,7 @@ async function scheduleEvent(req, res) {
         });
         // console.log("Scheduling Meeting");
         console.log(result.data.hangoutLink);
-        res.status(500).json({
+        res.status(200).json({
             success:"true",
             msg: "Link Generated",
             link: result.data.hangoutLink,
