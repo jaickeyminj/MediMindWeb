@@ -30,7 +30,6 @@ router.post("/consultant/login",consultantLogin);
 router.post("/consultant/signup", consultantSignup);
 router.get("/consultant/getRequestedAppointmentList",getRequestedAppointmentList);
 
-// router.post("/generate-meet-link",meet);
 router.post("/consultant/acceptAppointmentRequest",acceptAppointmentRequest);
 router.post("/consultant/rejectAppointmentRequest",rejectAppointmentRequest);
 router.get("/consultant/getScheduledAppointmentsForConsultant",getScheduledAppointmentsForConsultant);
