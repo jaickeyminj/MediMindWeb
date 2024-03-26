@@ -8,6 +8,7 @@ const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = r
 const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest } = require("../Controllers/appointment");
 
 const { redirectToGoogle, handleGoogleRedirect,scheduleEvent} = require("../Controllers/meet2");
+const { createRazorpayOrder} = require("../Config/razorpay");
 //const upload = require("../middlewares/multer");
 
 router.post("/patient/login",patientLogin);  
@@ -58,6 +59,8 @@ router.post("/consultant/updateAvailabilityTime",updateAvailabilityTime);
 router.get("/patient/getMeetlink",redirectToGoogle);
 router.get("/patient/handleGoogleRedirect",handleGoogleRedirect);
 router.get("/patient/scheduleEvent",scheduleEvent);
+
+router.post("/patient/razorpay/order",createRazorpayOrder);
 
 
 module.exports = router;
