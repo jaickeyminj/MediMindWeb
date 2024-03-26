@@ -7,6 +7,7 @@ const {consultantSignup, consultantLogin, updateAvailabilityTime, validateTokenC
 const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = require("../Controllers/searchConsultant");
 const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest } = require("../Controllers/appointment");
 
+const { redirectToGoogle, handleGoogleRedirect,scheduleEvent} = require("../Controllers/meet2");
 //const upload = require("../middlewares/multer");
 
 router.post("/patient/login",patientLogin);  
@@ -53,6 +54,10 @@ router.post("/consultant/updateAvailabilityTime",updateAvailabilityTime);
 // router.post("/vendor/signup",upload.single("image"), vendorSignup);
 // router.post("/vendor/addcategoryproduct",vendorCategory);
 // router.post("/vendor/add-product", upload.single("image"), vendorAddProduct);  //given the category name
+
+router.get("/patient/getMeetlink",redirectToGoogle);
+router.get("/patient/handleGoogleRedirect",handleGoogleRedirect);
+router.get("/patient/scheduleEvent",scheduleEvent);
 
 
 module.exports = router;
