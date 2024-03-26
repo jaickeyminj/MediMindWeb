@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const appointmentSchema = new Schema({
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     time: {
@@ -40,12 +40,12 @@ const appointmentSchema = new Schema({
     },
     duration: {
         type: Number,
-        required: true // Duration of the appointment in minutes
+        default: 30
     },
     status: {
         type: String,
-        enum: ['scheduled', 'completed', 'cancelled'],
-        default: 'scheduled'
+        enum: ['waiting','scheduled', 'completed', 'cancelled'],
+        default: 'waiting'
     }
 });
 
