@@ -177,7 +177,7 @@ p {
   margin-top: 15px;
   text-align: center;
   cursor: pointer;
-  color: #007bff;
+  color: #ffffff;
 }
 
 p:hover {
@@ -189,3 +189,106 @@ p:hover {
   max-width: 30px;
 }
 
+/*patient dashboard */
+.devider{
+  display: flex;
+}
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: min-content;
+  padding: 20px;
+  height: 100vh;
+  background-color: #5ca6ef;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  width: 100%;
+  
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  
+}
+
+li {
+  cursor: pointer;
+  padding: 10px 0;
+  color: #ffffff;
+  font-size: larger;
+}
+
+li.active {
+  color: rgb(236, 10, 10); /* Change color for active tab */
+  font-weight: bold; /* Bold font for active tab */
+}
+h2{
+  color: #e5e510;
+}
+
+/*search doctor*/
+.searchspace{
+  width: 60%;
+}
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.consultants-list {
+  margin-top: 20px;
+}
+
+.consultants-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.consultants-list li {
+  background-color: #6961cf;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(39, 11, 199, 0.1);
+}
+
+.consultants-list h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.consultants-list p {
+  margin: 5px 0;
+}
