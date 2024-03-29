@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middlewares/multer")
 
 
 const {patientSignup, patientLogin, updatePatientData, validateTokenPatient} = require("../Controllers/patientAuth");
@@ -9,14 +10,17 @@ const {createAppointment, getallAppointmentsForPatient, getScheduledAppointments
 
 const { redirectToGoogle, handleGoogleRedirect,scheduleEvent} = require("../Controllers/meet2");
 const { createRazorpayOrder} = require("../Config/razorpay");
+const { uploadDemo } = require("../Controllers/sampleUploadImage");
 //const upload = require("../middlewares/multer");
 
 router.post("/patient/login",patientLogin);  
 router.post("/patient/signup", patientSignup);
 router.post("/patient/validateTokenPatient", validateTokenPatient);
 router.post("/patient/SearchConsultant", searchConsultantBySpecialty);
+
 router.post("/patient/getAllConsultants", getAllConsultants);
 router.post("/patient/getConsultantsData", getConsultantsData);
+
 router.put("/patient/updatePatientData", updatePatientData);
 router.post("/patient/RequestAppointment", createAppointment);
 router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient);
@@ -61,6 +65,8 @@ router.get("/patient/handleGoogleRedirect",handleGoogleRedirect);
 router.get("/patient/scheduleEvent",scheduleEvent);
 
 router.post("/patient/razorpay/order",createRazorpayOrder);
+
+router.post("/sampleUpload",upload.array("files", 12),uploadDemo);
 
 
 module.exports = router;
