@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SearchDoctor from './SearchDoctor';
 import AppointmentForm from './AppointmentForm';
-import AppointmentStatus from './AppointmentStatus';
-const PatientDashboard = () => {
+const ConsultantDashboard = () => {
   const [activeTab, setActiveTab] = useState('search-doctors');
   const [loggedIn, setLoggedIn] = useState(false);
   const [name, setName] = useState(""); 
@@ -64,11 +63,10 @@ const PatientDashboard = () => {
               <div className="logo">
                 <h1><Link to="/"><img src="/images/logo.png" alt="logo" /></Link></h1>
               </div>
-              <li><h3>Welcome {name}</h3></li>
+              <li><h1>Welcome {name}</h1></li>
               <li className={activeTab === 'search-doctors' ? 'active' : ''} onClick={() => handleTabChange('search-doctors')}>Search Doctors</li>
               <li className={activeTab === 'disease-prediction' ? 'active' : ''} onClick={() => handleTabChange('disease-prediction')}>Disease Prediction</li>
               <li className={activeTab === 'medical-reports' ? 'active' : ''} onClick={() => handleTabChange('medical-reports')}>Medical Reports</li>
-              <li className={activeTab === 'appointment-status' ? 'active' : ''} onClick={() => handleTabChange('appointment-status')}>Appointment Status</li>
               <li className={activeTab === 'update-profile' ? 'active' : ''} onClick={() => handleTabChange('update-profile')}>Update Profile</li>
               <li onClick={handleLogout}><Link to="/">Logout</Link></li>
               {/* Add more navigation options here */}
@@ -78,7 +76,6 @@ const PatientDashboard = () => {
             <div className="content">
               {activeTab === 'search-doctors' && <SearchDoctor/>}
               {activeTab === 'disease-prediction' && <AppointmentForm/>}
-              {activeTab === 'appointment-status' && <AppointmentStatus/>}
               {activeTab === 'medical-reports' && <h2>Medical Reports</h2>}
               {activeTab === 'update-profile' && <h2>Update Profile</h2>}
               {/* Add content for additional tabs */}
@@ -96,4 +93,4 @@ const PatientDashboard = () => {
   );
 };
 
-export default PatientDashboard;
+export default ConsultantDashboard;

@@ -17,8 +17,10 @@ router.post("/patient/login",patientLogin);
 router.post("/patient/signup", patientSignup);
 router.post("/patient/validateTokenPatient", validateTokenPatient);
 router.post("/patient/SearchConsultant", searchConsultantBySpecialty);
-router.get("/patient/getAllConsultants", getAllConsultants);
-router.get("/patient/getConsultantsData", getConsultantsData);
+
+router.post("/patient/getAllConsultants", getAllConsultants);
+router.post("/patient/getConsultantsData", getConsultantsData);
+
 router.put("/patient/updatePatientData", updatePatientData);
 router.post("/patient/RequestAppointment", createAppointment);
 router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient);
