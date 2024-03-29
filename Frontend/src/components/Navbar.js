@@ -1,31 +1,87 @@
 // Navbar.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import OffCanvasMenu from './OffCanvasMenu';
+import PatientDashboard from './PatientDashboard';
+import ConsultantDashboard from './ConsultantDashboard';
+import UserLoginOffcanvas from './UserLoginOffcanvas';
+import ConsultantLoginOffcanvas from './ConsultantLoginOffcanvas';
 
 const Navbar = () => {
-  const [currentstate, setCurrentState] = useState("");
-  const [showLogin, setShowLogin] = useState(false);
+  const [isPatientLoggedIn, setPatientLoggedIn] = useState(false);
+  const [isConsultantLoggedIn, setConsultantLoggedIn] = useState(false);
+  const [showPatientLogin, setShowPatientLogin] = useState(false);
+  const [showConsultantLogin, setShowConsultantLogin] = useState(false);
 
-  const handleLoginClick = () => {
-    setCurrentState("login");
-    setShowLogin(true);
+  useEffect(() => {
+    const checkLoggedInStatus = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (token) {
+          const responsePatient = await fetch('http://localhost:27017/api/v1/patient/validateTokenPatient', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+
+          if (responsePatient.ok) {
+            setPatientLoggedIn(true);
+          } else {
+            const responseConsultant = await fetch('http://localhost:27017/api/v1/consultant/validateTokenConsultant', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+
+            if (responseConsultant.ok) {
+              setConsultantLoggedIn(true);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error checking login status:', error);
+      }
+    };
+
+    checkLoggedInStatus();
+  }, []);
+
+  const handlePatientLoginClick = () => {
+    setShowPatientLogin(true);
   };
 
-  const handleCloseLogin = () => {
-    setShowLogin(false);
+  const handleConsultantLoginClick = () => {
+    setShowConsultantLogin(true);
+  };
+
+  const handlePatientCloseLogin = () => {
+    setShowPatientLogin(false);
+  };
+
+  const handleConsultantCloseLogin = () => {
+    setShowConsultantLogin(false);
   };
 
   return (
-    <div className="navbar">
-      <div className="logo">
-        <h1><Link to="/"><img src="/images/logo.png" alt="logo" /></Link></h1>
+    <div>
+      <div className="navbar">
+        <div className="logo">
+          <h1><Link to="/"><img src="/images/logo.png" alt="logo" /></Link></h1>
+        </div>
+        <ul className="auth-options">
+        <Link to="/services">Services</Link>
+          <Link to="/patient">Patient</Link>
+          <Link to="/consultant">Consultant</Link>
+        </ul>
+        {showPatientLogin && (
+          <UserLoginOffcanvas onClose={handlePatientCloseLogin} />
+        )}
+        {showConsultantLogin && (
+          <ConsultantLoginOffcanvas onClose={handleConsultantCloseLogin} />
+        )}
       </div>
-      <ul className="nav-links">
-        <li><p onClick={() => setCurrentState("services")}>Services</p></li>
-        <li><p onClick={handleLoginClick}>Login</p></li>
-      </ul>
-      {showLogin && <OffCanvasMenu onClose={handleCloseLogin} />}
+      )}
     </div>
   );
 }
