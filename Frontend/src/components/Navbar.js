@@ -81,7 +81,7 @@ const Navbar = () => {
           <ConsultantLoginOffcanvas onClose={handleConsultantCloseLogin} />
         )}
       </div>
-      )}
+      )
     </div>
   );
 }
