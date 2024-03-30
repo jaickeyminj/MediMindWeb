@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import SearchDoctor from './SearchDoctor';
-import AppointmentForm from './AppointmentForm';
+
 const ConsultantDashboard = () => {
-  const [activeTab, setActiveTab] = useState('search-doctors');
+  const [activeTab, setActiveTab] = useState('appointments');
   const [loggedIn, setLoggedIn] = useState(false);
   const [name, setName] = useState(""); 
 
@@ -17,7 +16,7 @@ const ConsultantDashboard = () => {
           return;
         }
 
-        const response = await fetch('http://localhost:27017/api/v1/patient/validateTokenPatient', {
+        const response = await fetch('http://localhost:27017/api/v1/consultant/validateTokenConsultant', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -26,7 +25,7 @@ const ConsultantDashboard = () => {
 
         if (response.ok) {
           setLoggedIn(true);
-          const name= localStorage.getItem('name');
+          const name = localStorage.getItem('name');
           setName(name);
         } else {
           setLoggedIn(false);
@@ -63,30 +62,26 @@ const ConsultantDashboard = () => {
               <div className="logo">
                 <h1><Link to="/"><img src="/images/logo.png" alt="logo" /></Link></h1>
               </div>
-              <li><h1>Welcome {name}</h1></li>
-              <li className={activeTab === 'search-doctors' ? 'active' : ''} onClick={() => handleTabChange('search-doctors')}>Search Doctors</li>
-              <li className={activeTab === 'disease-prediction' ? 'active' : ''} onClick={() => handleTabChange('disease-prediction')}>Disease Prediction</li>
-              <li className={activeTab === 'medical-reports' ? 'active' : ''} onClick={() => handleTabChange('medical-reports')}>Medical Reports</li>
-              <li className={activeTab === 'update-profile' ? 'active' : ''} onClick={() => handleTabChange('update-profile')}>Update Profile</li>
+              <li><h3>Welcome {name}</h3></li>
+              <li className={activeTab === 'appointments' ? 'active' : ''} onClick={() => handleTabChange('appointments')}>Appointments</li>
+              <li className={activeTab === 'update-time' ? 'active' : ''} onClick={() => handleTabChange('update-time')}>Update Available Time</li>
               <li onClick={handleLogout}><Link to="/">Logout</Link></li>
               {/* Add more navigation options here */}
             </ul>
           </div>
           <div className="container">
             <div className="content">
-              {activeTab === 'search-doctors' && <SearchDoctor/>}
-              {activeTab === 'disease-prediction' && <AppointmentForm/>}
-              {activeTab === 'medical-reports' && <h2>Medical Reports</h2>}
-              {activeTab === 'update-profile' && <h2>Update Profile</h2>}
+              {activeTab === 'appointments' && <h2>Appointments</h2>}
+              {activeTab === 'update-time' && <h2>Update Available Time</h2>}
               {/* Add content for additional tabs */}
             </div>
           </div>
         </>
       ) : (
         <div>
-        <h2>You are not logged in. Go for Login</h2>
-        <Link as="button" to="/"><h3>here</h3></Link>
-        // Optionally, you can add a login form or redirect to a login page
+          <h2>You are not logged in. Go for Login</h2>
+          <Link as="button" to="/"><h3>here</h3></Link>
+          {/* Optionally, you can add a login form or redirect to a login page */}
         </div>
       )}
     </div>

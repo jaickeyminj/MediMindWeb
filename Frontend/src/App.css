@@ -191,17 +191,14 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-
+.date{
+  display: flex;
+}
 p {
   margin-top: 15px;
-  text-align: center;
-  cursor: pointer;
   color: #ffffff;
 }
 
-p:hover {
-  text-decoration: underline;
-}
 
 .close-btn {
   background-color: rgb(173, 18, 18);

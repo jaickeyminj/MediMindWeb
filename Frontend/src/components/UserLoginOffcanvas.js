@@ -89,6 +89,33 @@ const UserLoginOffcanvas = ({ onClose }) => {
       alert('Login failed. Please try again later.');
     }
   };
+  
+  const handleRegistrationSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.mobileNo || !formData.bloodGroup || !formData.dob || !formData.password || !formData.gender || !formData.address.city || !formData.address.state || !formData.address.country) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:27017/api/v1/patient/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        alert('Registration successful!');
+      } else {
+        const errorData = await response.json();
+        alert('Registration failed: ' + errorData.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Registration failed. Please try again later.');
+    }
+  };
 
   const toggleMode = () => {
     setLoginMode(!loginMode);
@@ -133,10 +160,59 @@ const UserLoginOffcanvas = ({ onClose }) => {
                   <p onClick={toggleMode}> Not registered yet? Register here.</p>
                 </form>
               ) : (
-                <form>
-                  <h2>User Registration</h2>
-                  {/* Rest of the registration form */}
-                </form>
+                <form onSubmit={handleRegistrationSubmit}>
+                <h2>User Registration</h2>
+                <div className="form-group">
+                  <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <input type="text" name="mobileNo" placeholder="Mobile Number" value={formData.mobileNo} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <select name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} required>
+                    <option value="">Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <select name="gender" value={formData.gender} onChange={handleChange} required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <div className='date'>
+                  <label><p>Date Of Birth</p></label>
+                  <input type="date" name="dob" value={formData.dob} onChange={handleChange} placeholder="Date Of Birth" required />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <input type="text" name="address.city" placeholder="City" value={formData.address.city} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <input type="text" name="address.state" placeholder="State" value={formData.address.state} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <input type="text" name="address.country" placeholder="Country" value={formData.address.country} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <input type="password" name="password" placeholder="Set Password" value={formData.password} onChange={handleChange} required />
+                </div>
+                <button type="submit">Register</button>
+                <p onClick={toggleMode}>Already registered? Login here.</p>
+              </form>
               )}
             </>
 
