@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Computer%20System%20Design/MLFlow/mlruns/0/06297adce47a4eb3a11e13ab87f966d5/artifacts
+end_time: 1711798912932
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 06297adce47a4eb3a11e13ab87f966d5
+run_name: Support Vector Machine
+run_uuid: 06297adce47a4eb3a11e13ab87f966d5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711798907572
+status: 3
+tags: []
+user_id: jaick
