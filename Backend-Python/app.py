@@ -14,10 +14,30 @@ file_name="file.csv"
 app = Flask(__name__)
 
 # Path to the MLFlow logged model
-logged_model = 'E:\\Computer System Design\\MLFlow\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\Logistic Regression_model'
+logged_model = 'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\Logistic Regression_model'
 
-# Load model as a PyFuncModel
-loaded_model = mlflow.pyfunc.load_model(logged_model)
+
+model_urls = [
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\Logistic Regression_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\4611a12ea18e4bd388c55dd3b0251ba1\\artifacts\\Neural Network_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\1ce959957e834d438c76d502e74a6470\\artifacts\\Naive Bayes_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\06297adce47a4eb3a11e13ab87f966d5\\artifacts\\SVM_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\2fd14a508a62492bbae1515d69a9393c\\artifacts\\Gradient Boosting_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\f26c0d62760e443cbddb8bed5072f7ae\\artifacts\\Random Forest_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\41cb613cadff434bb073a7b2011a676f\\artifacts\\Decision Tree_model'
+]
+
+# Load models as PyFuncModels
+# loaded_models = [mlflow.pyfunc.load_model(path) for path in model_urls ]
+
+# # Load model as a PyFuncModel
+loaded_model1 = mlflow.pyfunc.load_model(model_urls[0])
+loaded_model2 = mlflow.pyfunc.load_model(model_urls[1])
+loaded_model3 = mlflow.pyfunc.load_model(model_urls[2])
+loaded_model4 = mlflow.pyfunc.load_model(model_urls[3])
+loaded_model5 = mlflow.pyfunc.load_model(model_urls[4])
+loaded_model6 = mlflow.pyfunc.load_model(model_urls[5])
+loaded_model7 = mlflow.pyfunc.load_model(model_urls[6])
 
 # Dictionary mapping diagnosis indices to diagnosis names
 prognosis_names = {
@@ -107,21 +127,40 @@ def hello_world():
 
 @app.route('/predict')
 def predict_diagnosis():
-    # Predict on a Pandas DataFrame
-    # Assuming 'file2.csv' is in the same directory as this script
-    predicted_diagnosis_indices = loaded_model.predict(pd.DataFrame(pd.read_csv(file_name)))
+    dataframe = pd.DataFrame(pd.read_csv(file_name))
+    predicted_diagnosis_indices1 = loaded_model1.predict(dataframe)
+    predicted_diagnosis_indices2 = loaded_model2.predict(dataframe)
+    predicted_diagnosis_indices3 = loaded_model3.predict(dataframe)
+    predicted_diagnosis_indices4 = loaded_model4.predict(dataframe)
+    predicted_diagnosis_indices5 = loaded_model5.predict(dataframe)
+    predicted_diagnosis_indices6 = loaded_model6.predict(dataframe)
+    predicted_diagnosis_indices7 = loaded_model7.predict(dataframe)
+    
 
     # Map predicted indices to diagnosis names
-    predicted_diagnosis_names = [prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices]
+    predicted_diagnosis_names = []
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices1])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices2])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices3])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices4])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices5])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices6])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices7])
+    
+    names = predicted_diagnosis_names
+    flattened_list = [diagnosis for sublist in names for diagnosis in sublist]
+
+    output_disease = find_most_frequent_name(flattened_list)
 
     # Return predicted diagnosis names as JSON
-    return jsonify({"predictions": predicted_diagnosis_names})
+    # print(output_disease)
+    return jsonify({"predictions": output_disease})
 
 
 @app.route('/analyze')
 def analyze_symptoms():
     # Get user input from request data
-    user_input = "I have a itching and anxiety fatigue fever"
+    user_input = "I fever"
 
     # Tokenize and lemmatize user input
     tokens = word_tokenize(user_input)
@@ -150,6 +189,32 @@ def analyze_symptoms():
     response = predict_diagnosis()
 
     return response
+
+def find_most_frequent_name(names):
+    name_counts = {}
+    
+    # Count frequencies of names
+    for name in names:
+        if name in name_counts:
+            name_counts[name] += 1
+        else:
+            name_counts[name] = 1
+    
+    # Find the highest frequency
+    max_frequency = max(name_counts.values())
+    
+    # Find names with the highest frequency
+    most_frequent_names = [name for name, count in name_counts.items() if count == max_frequency]
+    
+    # Return any name if all have the same frequency
+    if len(most_frequent_names) == len(name_counts):
+        return names[0]  # Return any name
+    
+    # Return the first most frequent name
+    # print(most_frequent_names)
+    return most_frequent_names[0]
+
+
 
 
 if __name__ == '__main__':
