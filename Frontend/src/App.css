@@ -10,7 +10,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-   
+
 }
 
 
@@ -33,6 +33,7 @@
   color: #808080;
   margin-top: 20px;
 }
+
 /*typing effect*/
 .typing-effect {
   display: inline-block;
@@ -45,7 +46,7 @@
   font-size: 24px;
   font-weight: bold;
   color: #e5e510;
-  font-family:cursive;
+  font-family: cursive;
 }
 
 
@@ -78,7 +79,22 @@
 }
 
 .logo img {
-  width: 150px; /* Adjust the size of the logo as needed */
+  width: 150px;
+  /* Adjust the size of the logo as needed */
+}
+
+.auth-options {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.auth-options a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  margin: 0 10px;
+
 }
 
 .nav-links {
@@ -94,11 +110,11 @@
   margin-right: 40px;
 }
 
-.nav-links li p  {
+.nav-links li p {
   color: #ffffff;
   text-decoration: none;
   font-size: 18px;
-  background-color:none ;
+  background-color: none;
   cursor: pointer;
 
 }
@@ -129,9 +145,11 @@
   padding: 50px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  max-width: 500px; /* Limiting the maximum width */
-  width: 100%; /* Make sure it takes full width */
-  
+  max-width: 500px;
+  /* Limiting the maximum width */
+  width: 100%;
+  /* Make sure it takes full width */
+
 }
 
 .form-container {
@@ -156,7 +174,8 @@ select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box; /* Ensure padding is included in width */
+  box-sizing: border-box;
+  /* Ensure padding is included in width */
 }
 
 button {
@@ -172,27 +191,25 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-
+.date{
+  display: flex;
+}
 p {
   margin-top: 15px;
-  text-align: center;
-  cursor: pointer;
   color: #ffffff;
 }
 
-p:hover {
-  text-decoration: underline;
-}
 
-.close-btn{
+.close-btn {
   background-color: rgb(173, 18, 18);
   max-width: 30px;
 }
 
 /*patient dashboard */
-.devider{
+.devider {
   display: flex;
 }
+
 .container {
   display: flex;
   width: 100%;
@@ -201,21 +218,22 @@ p:hover {
 .sidebar {
   width: min-content;
   padding: 20px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #5ca6ef;
+  
 }
 
 .content {
-  flex: 1;
+  display: flex;
   padding: 20px;
   width: 100%;
-  
+
 }
 
 ul {
   list-style-type: none;
   padding: 0;
-  
+
 }
 
 li {
@@ -226,17 +244,23 @@ li {
 }
 
 li.active {
-  color: rgb(236, 10, 10); /* Change color for active tab */
-  font-weight: bold; /* Bold font for active tab */
-}
-h2{
-  color: #e5e510;
+  color: rgb(236, 10, 10);
+  /* Change color for active tab */
+  font-weight: bold;
+  /* Bold font for active tab */
 }
 
+h2 {
+  color: #3220d2;
+}
+p{
+  color: #3220d2;
+}
 /*search doctor*/
-.searchspace{
+.searchspace {
   width: 60%;
 }
+
 .search-container {
   max-width: 800px;
   margin: 0 auto;
@@ -274,14 +298,31 @@ h2{
 .consultants-list ul {
   list-style: none;
   padding: 0;
+  
+  font-size: 10px;
 }
 
 .consultants-list li {
-  background-color: #6961cf;
+  background-color: #d9a5f0;
   padding: 20px;
   margin-bottom: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(39, 11, 199, 0.1);
+  background-blend-mode: color-burn;
+}
+
+.consultant-details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  align-items: center;
+}
+
+
+.consultant-details img {
+  width: 150px;
+  height: 150px;
 }
 
 .consultants-list h3 {
@@ -290,5 +331,77 @@ h2{
 }
 
 .consultants-list p {
-  margin: 5px 0;
+  margin: 0px 0;
+}
+
+.consultants-list .form-group {
+  display: flex;
+  
+  justify-content: space-between;
+}
+
+#date {
+  width: max-content;
+}
+
+/*appointment status*/
+.appointment-status {
+  margin-top: 20px;
+}
+
+.appointment-status table {
+  width: 100%;
+  border-collapse: collapse;
+  opacity: 80%;
+}
+
+.appointment-status th,
+.appointment-status td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.appointment-status th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.appointment-status tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.appointment-status tr:nth-child(odd) {
+  background-color: #f2d7d7;
+}
+
+.appointment-status tr:hover {
+  background-color: #ddd;
+}
+
+.payment-status-paid {
+  color: green;
+}
+
+.payment-status-pending {
+  color: red;
+}
+
+.confirmation-status-confirmed {
+  color: green;
+}
+
+.confirmation-status-pending {
+  color: red;
+}
+
+.payment-status-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payment-status-button:hover {
+  background-color: #45a049;
 }

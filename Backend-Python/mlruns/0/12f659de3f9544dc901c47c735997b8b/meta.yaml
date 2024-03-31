@@ -1,0 +1,16 @@
+artifact_uri: file:///E:/Computer%20System%20Design/MLFlow/mlruns/0/12f659de3f9544dc901c47c735997b8b/artifacts
+deleted_time: 1711798386530
+end_time: 1711798340867
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 12f659de3f9544dc901c47c735997b8b
+run_name: Decision Tree Classifier
+run_uuid: 12f659de3f9544dc901c47c735997b8b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711798335890
+status: 3
+tags: []
+user_id: jaick
