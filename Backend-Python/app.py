@@ -127,13 +127,34 @@ def hello_world():
 
 @app.route('/predict')
 def predict_diagnosis():
-    predicted_diagnosis_indices = loaded_model5.predict(pd.DataFrame(pd.read_csv(file_name)))
+    dataframe = pd.DataFrame(pd.read_csv(file_name))
+    predicted_diagnosis_indices1 = loaded_model1.predict(dataframe)
+    predicted_diagnosis_indices2 = loaded_model2.predict(dataframe)
+    predicted_diagnosis_indices3 = loaded_model3.predict(dataframe)
+    predicted_diagnosis_indices4 = loaded_model4.predict(dataframe)
+    predicted_diagnosis_indices5 = loaded_model5.predict(dataframe)
+    predicted_diagnosis_indices6 = loaded_model6.predict(dataframe)
+    predicted_diagnosis_indices7 = loaded_model7.predict(dataframe)
+    
 
     # Map predicted indices to diagnosis names
-    predicted_diagnosis_names = [prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices]
+    predicted_diagnosis_names = []
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices1])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices2])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices3])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices4])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices5])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices6])
+    predicted_diagnosis_names.append([prognosis_names.get(idx, "Unknown Diagnosis") for idx in predicted_diagnosis_indices7])
+    
+    names = predicted_diagnosis_names
+    flattened_list = [diagnosis for sublist in names for diagnosis in sublist]
+
+    output_disease = find_most_frequent_name(flattened_list)
 
     # Return predicted diagnosis names as JSON
-    return jsonify({"predictions": predicted_diagnosis_names})
+    # print(output_disease)
+    return jsonify({"predictions": output_disease})
 
 
 @app.route('/analyze')
@@ -168,6 +189,32 @@ def analyze_symptoms():
     response = predict_diagnosis()
 
     return response
+
+def find_most_frequent_name(names):
+    name_counts = {}
+    
+    # Count frequencies of names
+    for name in names:
+        if name in name_counts:
+            name_counts[name] += 1
+        else:
+            name_counts[name] = 1
+    
+    # Find the highest frequency
+    max_frequency = max(name_counts.values())
+    
+    # Find names with the highest frequency
+    most_frequent_names = [name for name, count in name_counts.items() if count == max_frequency]
+    
+    # Return any name if all have the same frequency
+    if len(most_frequent_names) == len(name_counts):
+        return names[0]  # Return any name
+    
+    # Return the first most frequent name
+    # print(most_frequent_names)
+    return most_frequent_names[0]
+
+
 
 
 if __name__ == '__main__':
