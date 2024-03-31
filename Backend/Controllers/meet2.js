@@ -6,12 +6,12 @@ const { v4: uuid } = require("uuid");
 
 const calendar = google.calendar({
     version: "v3",
-    auth: "AIzaSyAP3XDcxV3PJM6RFwAriZ63POcy5K8IjIE"
+    auth: "AIzaSyD-WcnVeN8ZpdPFdx43GX-smyWk-pSEYao"
 });
 
 const oauth2Client = new google.auth.OAuth2(
-    "976403191613-mth034ign9t4tskbu3na420cl8cbdap1.apps.googleusercontent.com",
-    "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",
+    "695738836432-q6e95lmhsof2eteblf9m9i1pmg0f5kcm.apps.googleusercontent.com",
+    "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",
     "http://localhost:27017/api/v1/patient/handleGoogleRedirect"
 );
 
