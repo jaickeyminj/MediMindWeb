@@ -66,16 +66,19 @@ const AppointmentStatus = () => {
                     <table>
                         <thead>
                             <tr>
+                                <th>Appointment Id</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Fee</th>
                                 <th>Payment Status</th>
                                 <th>Confirmation Status</th>
+                                <th>Payment Link</th>
                             </tr>
                         </thead>
                         <tbody>
                             {appointments.map(appointment => (
                                 <tr key={appointment._id}>
+                                    <td>{appointment._id}</td>
                                     <td>{appointment.date}</td>
                                     <td>{appointment.time}</td>
                                     <td>{appointment.fee}</td>
