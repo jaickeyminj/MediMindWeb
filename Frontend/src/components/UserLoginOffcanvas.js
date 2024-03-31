@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PatientDashboard from './PatientDashboard';
-
+import { Link } from 'react-router-dom';
 const UserLoginOffcanvas = ({ onClose }) => {
   const [loginMode, setLoginMode] = useState(true);
   const [formData, setFormData] = useState({
@@ -145,7 +145,7 @@ const UserLoginOffcanvas = ({ onClose }) => {
       {showCanvas && (
         <div className={`offcanvas-container ${showCanvas ? 'show' : ''}`}>
           <div className="offcanvas" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={handleCloseMenu}>X</button>
+            <Link to="/"><button className="close-btn" onClick={handleCloseMenu}>X</button></Link>
             <>
               {loginMode ? (
                 <form onSubmit={handleLoginSubmit}>

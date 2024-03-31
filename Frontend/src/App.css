@@ -225,11 +225,19 @@ p {
 
 .content {
   display: flex;
-  padding: 20px;
-  width: 100%;
-
+    padding: 20px;
+    width: 100%;
+    align-items: stretch;
+    justify-content: flex-start;
+ 
 }
-
+.container2{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust as needed */
+  flex-direction: column;
+  width: 100%;
+}
 ul {
   list-style-type: none;
   padding: 0;
@@ -343,6 +351,23 @@ p{
 #date {
   width: max-content;
 }
+.sidebar ul li:last-child {
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.sidebar ul li:last-child a {
+  display: block;
+  padding: 10px;
+  background-color: #f44336; /* Red color */
+  color: #fff; /* White text */
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.sidebar ul li:last-child a:hover {
+  background-color: #d32f2f; /* Darker red color on hover */
+}
 
 /*appointment status*/
 .appointment-status {
@@ -405,3 +430,22 @@ p{
 .payment-status-button:hover {
   background-color: #45a049;
 }
+
+/* CSS for appointment cards */
+.appointment-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-card > div {
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.appointment-card button {
+  margin: 8px;
+}
+

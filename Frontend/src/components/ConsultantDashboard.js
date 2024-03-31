@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import UpdateAvailableTime from './UpdateAvailbleTime';
+import GetAppointments from './GetAppointments';
+import ScheduledAppointments from './ScheduledAppointments';
 const ConsultantDashboard = () => {
-  const [activeTab, setActiveTab] = useState('appointments');
+  const [activeTab, setActiveTab] = useState('appointment_requests');
   const [loggedIn, setLoggedIn] = useState(false);
   const [name, setName] = useState(""); 
 
@@ -63,16 +65,18 @@ const ConsultantDashboard = () => {
                 <h1><Link to="/"><img src="/images/logo.png" alt="logo" /></Link></h1>
               </div>
               <li><h3>Welcome {name}</h3></li>
-              <li className={activeTab === 'appointments' ? 'active' : ''} onClick={() => handleTabChange('appointments')}>Appointments</li>
-              <li className={activeTab === 'update-time' ? 'active' : ''} onClick={() => handleTabChange('update-time')}>Update Available Time</li>
+              <li className={activeTab === 'appointment_requests' ? 'active' : ''} onClick={() => handleTabChange('appointment_requests')}>Appointment Requests</li>
+              <li className={activeTab === 'scheduled_appointments' ? 'active' : ''} onClick={() => handleTabChange('scheduled_appointments')}>Scheduled Appointments</li>
+              <li className={activeTab === 'update_time' ? 'active' : ''} onClick={() => handleTabChange('update-time')}>Update Available Time</li>
               <li onClick={handleLogout}><Link to="/">Logout</Link></li>
               {/* Add more navigation options here */}
             </ul>
           </div>
           <div className="container">
             <div className="content">
-              {activeTab === 'appointments' && <h2>Appointments</h2>}
-              {activeTab === 'update-time' && <h2>Update Available Time</h2>}
+              {activeTab === 'appointment_requests' && <GetAppointments/>}
+              {activeTab === 'scheduled_appointments' && <ScheduledAppointments/>}
+              {activeTab === 'update_time' && <UpdateAvailableTime/>}
               {/* Add content for additional tabs */}
             </div>
           </div>
