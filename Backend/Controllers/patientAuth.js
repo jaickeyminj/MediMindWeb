@@ -87,7 +87,14 @@ exports.patientLogin = async (req, res) => {
 exports.updatePatientData = async (req, res) => {
     try {
         const { patientId, updates } = req.body;
-        console.log(updates);
+
+        // Check if password update is requested
+        if (updates.password) {
+            // Hash the new password
+            updates.password = await bcrypt.hash(updates.password, 10);
+        }
+
+        // Update patient data
         const updatedPatient = await Patient.findByIdAndUpdate(
             patientId,
             { $set: updates }, // Using $set to update only specified fields
