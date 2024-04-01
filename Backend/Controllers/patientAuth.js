@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const Patient = require("../models/patient");
+const Patient = require("../Models/patient");
 const jwt = require('jsonwebtoken');
 const { generateToken } = require("../utils/authUtils");
 

@@ -1,4 +1,4 @@
-const Consultant = require("../models/consultant");
+const Consultant = require("../Models/consultant");
 const jwt = require('jsonwebtoken');
 
 exports.searchConsultantBySpecialty = async (req, res) => {
