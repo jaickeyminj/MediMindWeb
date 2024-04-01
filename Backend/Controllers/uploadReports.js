@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const cloudinary = require('../Config/cloudinary');
-const Patient = require('../models/patient');
 
 exports.storeReportLink = async (req, res) => {
     try {

@@ -1,11 +1,8 @@
-// import  express  from "express";
-/*
+const express = require("express");
 const { google } = require("googleapis");
-// const axios = require("axios");
 const dayjs = require("dayjs");
 const { v4: uuid } = require("uuid");
 const jwt = require('jsonwebtoken');
-const Appointment = require('../models/appointment');
 const moment = require('moment');
 
 const calendar = google.calendar({
@@ -22,7 +19,6 @@ const oauth2Client = new google.auth.OAuth2(
 const scopes = [
     'https://www.googleapis.com/auth/calendar'
 ];
-
 
 async function handleAppointment(req, res) {
     try {
@@ -136,8 +132,9 @@ async function scheduleEvent(req, res, appointmentId) {
     }
 }
 
-module.exports = { handleAppointment,handleGoogleRedirect ,scheduleEvent,redirectToGoogle };
-*/
+module.exports = { handleAppointment, handleGoogleRedirect, scheduleEvent};
+
+
 /*
 async function redirectToGoogle(req, res) {
     console.log("redirect");
