@@ -12,6 +12,8 @@ const razorpay = new Razorpay({
     key_secret: process.env.RAZORPAY_KEY_SECRET 
   }); 
 
+
+  /*
 exports.createRazorpayOrder = (req, res) => {
   console.log("create order");
     const options = {
@@ -27,5 +29,47 @@ exports.createRazorpayOrder = (req, res) => {
         }
         console.log(order);
         res.json(order);
+    });
+};
+
+
+*/
+exports.createRazorpayOrder = (req, res) => {
+    console.log("create order");
+    const amount = req.body.amount; // Amount in the smallest currency unit
+    const currency = 'INR';
+    const receipt = "receipt_order_";
+
+    const options = {
+        amount: amount,
+        currency: currency,
+        receipt: receipt,
+        payment_capture: 1
+    };
+
+    razorpay.orders.create(options, async (err, order) => {
+        if (err) {
+            res.status(500).json({ error: err });
+            return;
+        }
+        console.log(order);
+        res.json(order);
+
+        try {
+            // Update appointment status to 'paid' and set isPaid to true
+            const appointmentId = req.body.appointmentId;
+             // Assuming you're sending the appointmentId in the request body
+
+             console.log(appointmentId);
+            const appointment = await Appointment.findById(appointmentId);
+            if (appointment) {
+                appointment.isPaid = true;
+                // Deduct the fee from the appointment object if necessary
+                // appointment.fee -= deductedAmount;
+                await appointment.save();
+            }
+        } catch (error) {
+            console.error("Error updating appointment status:", error);
+        }
     });
 };

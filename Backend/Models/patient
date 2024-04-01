@@ -16,7 +16,7 @@ const patientSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['Male', 'Female', 'Other','male', 'female', 'other'],
+    enum: ['male', 'female', 'other'],
     required: true
   },
   dob: {
@@ -53,11 +53,11 @@ const patientSchema = new mongoose.Schema({
     report: {
       type: String,
       required: true
-    },
-    tag: {
-      type: String,
-      required: true
     }
+    // tag: {
+    //   type: String,
+    //   required: true
+    // }
   }],
   feedback: [{
     consultant: {
