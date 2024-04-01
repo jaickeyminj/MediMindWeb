@@ -47,12 +47,12 @@ const DiseasePrediction = () => {
   const handlePredict = async () => {
     try {
         console.log(selectedSymptoms.join(' '))
-      const response = await fetch('http://jaickeyjoyminj.online:8000/analyze', {
+        const response = await fetch('http://localhost:8000/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ symptoms: selectedSymptoms.join(' ') })
+        body: JSON.stringify({ "symptoms": selectedSymptoms.join(' ') })
       });
 
       if (response.ok) {
