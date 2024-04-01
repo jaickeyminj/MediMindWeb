@@ -1,4 +1,5 @@
 // import  express  from "express";
+/*
 const { google } = require("googleapis");
 // const axios = require("axios");
 const dayjs = require("dayjs");
@@ -15,7 +16,7 @@ const calendar = google.calendar({
 const oauth2Client = new google.auth.OAuth2(
     "695738836432-q6e95lmhsof2eteblf9m9i1pmg0f5kcm.apps.googleusercontent.com",
     "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",
-    "http://jaickeyjoyminj.online:27017/api/v1/patient/handleGoogleRedirect"
+    "http://localhost:27017/api/v1/patient/handleGoogleRedirect"
 );
 
 const scopes = [
@@ -135,8 +136,8 @@ async function scheduleEvent(req, res, appointmentId) {
     }
 }
 
-module.exports = { handleAppointment };
-
+module.exports = { handleAppointment,handleGoogleRedirect ,scheduleEvent,redirectToGoogle };
+*/
 /*
 async function redirectToGoogle(req, res) {
     console.log("redirect");

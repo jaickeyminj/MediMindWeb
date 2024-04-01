@@ -12,7 +12,7 @@ const UpdateAvailableTime = ({ token }) => {
   useEffect(() => {
     const fetchPreviousAvailability = async () => {
       try {
-        const response = await fetch('http://3.111.21.73:27017/api/v1/patient/getConsultantsData', {
+        const response = await fetch('http://localhost:27017/api/v1/patient/getConsultantsData', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const UpdateAvailableTime = ({ token }) => {
 
   const handleConfirm = async () => {
     try {
-      const response = await fetch('http://3.111.21.73:27017/api/v1/consultant/updateAvailabilityTime', {
+      const response = await fetch('http://localhost:27017/api/v1/consultant/updateAvailabilityTime', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
