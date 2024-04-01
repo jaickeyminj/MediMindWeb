@@ -98,7 +98,7 @@ const GetAppointments = () => {
     return (
         <div>
             <h2>Appointment Requests</h2>
-            <ul className='container2'>
+            <ul>
                 {appointments.map(appointment => (
                     appointment.status === 'waiting' && (
                         <li key={appointment._id} className="appointment-card">
