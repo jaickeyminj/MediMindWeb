@@ -63,13 +63,15 @@ exports.createRazorpayOrder = (req, res) => {
 
              console.log(appointmentId);
             const appointment = await Appointment.findById(appointmentId);
-            console.log(appointment);
+            
             if (appointment) {
                 appointment.isPaid = true;
                 // Deduct the fee from the appointment object if necessary
                 // appointment.fee -= deductedAmount;
                 await appointment.save();
             }
+            console.log("Appointment ...");
+            console.log(appointment);
         } catch (error) {
             console.error("Error updating appointment status:", error);
         }
