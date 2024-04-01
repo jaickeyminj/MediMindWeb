@@ -18,7 +18,7 @@ const ConsultantDashboard = () => {
           return;
         }
 
-        const response = await fetch('http://3.111.21.73:27017/api/v1/consultant/validateTokenConsultant', {
+        const response = await fetch('http://localhost:27017/api/v1/consultant/validateTokenConsultant', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`

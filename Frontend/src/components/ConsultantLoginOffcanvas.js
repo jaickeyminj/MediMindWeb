@@ -25,7 +25,7 @@ const ConsultantLoginOffcanvas = ({ onClose }) => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await fetch('http://3.111.21.73:27017/api/v1/consultant/validateTokenPatient', {
+          const response = await fetch('http://localhost:27017/api/v1/consultant/validateTokenPatient', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`
@@ -67,7 +67,7 @@ const ConsultantLoginOffcanvas = ({ onClose }) => {
     }
 
     try {
-      const response = await fetch('http://3.111.21.73:27017/api/v1/consultant/signup', {
+      const response = await fetch('http://localhost:27017/api/v1/consultant/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const ConsultantLoginOffcanvas = ({ onClose }) => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://3.111.21.73:27017/api/v1/consultant/login', {
+      const response = await fetch('http://localhost:27017/api/v1/consultant/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

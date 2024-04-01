@@ -12,7 +12,7 @@ clientSecret="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"
 passport.use(new GoogleStrategy({
     clientID: clientID,
     clientSecret: clientSecret,
-    callbackURL: "http://jaickeyjoyminj.online:27017/auth/callback"
+    callbackURL: "http://localhost:27017/auth/callback"
 },
     function (accessToken, refreshToken, profile, cb) {
         Meeting({
