@@ -34,7 +34,7 @@ model_urls = [
 ]
 #remove this for local test
 model_urls = [
-    url.replace('\\', '/')
+    '/' + url.replace('\\', '/')
     for url in model_urls
 ]
 
