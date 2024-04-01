@@ -10,7 +10,7 @@ const {createAppointment, getallAppointmentsForPatient, getScheduledAppointments
 
 const { handleAppointment, handleGoogleRedirect,scheduleEvent} = require("../Controllers/meet2");
 const { createRazorpayOrder} = require("../Config/razorpay");
-const { storeReportLink } = require("../Controllers/uploadReports");
+const { storeReportLink, getAllReportIds } = require("../Controllers/uploadReports");
 //const upload = require("../middlewares/multer");
 
 router.post("/patient/login",patientLogin);  
@@ -23,6 +23,7 @@ router.put("/patient/updatePatientData", updatePatientData);
 router.post("/patient/RequestAppointment", createAppointment);
 router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient);
 router.post("/UploadReports",upload.array("files", 12),storeReportLink);
+router.post("/getAllReportIds",getAllReportIds);
 //router.post("/patient/uploadReports", upload.single("image"), patientSignup);
 
 
