@@ -91,19 +91,19 @@ exports.getAllReportIds = async (req, res) => {
                 });
             }
 
-            const reportIds = patient.reports.map(report => report._id);
+            const reportLinks = patient.reports.map(report => report.report);
 
             return res.status(200).json({
                 success: true,
-                message: 'Report IDs retrieved successfully',
-                reportIds,
+                message: 'Report links retrieved successfully',
+                reportLinks,
             });
         });
     } catch (error) {
         console.error(error);
         return res.status(500).json({
             success: false,
-            message: 'Error retrieving report IDs',
+            message: 'Error retrieving report links',
         });
     }
 };
