@@ -27,5 +27,5 @@ app.get('/', (req, res) => {
 
 // Start the Express app and listen on the specified port
 app.listen(PORT, () => {
-    console.log(`App is listening at http://localhost:${PORT}`);
+    console.log(`App is listening at http://3.111.21.73:${PORT}`);
 });

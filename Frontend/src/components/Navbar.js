@@ -17,7 +17,7 @@ const Navbar = () => {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const responsePatient = await fetch('http://localhost:27017/api/v1/patient/validateTokenPatient', {
+          const responsePatient = await fetch('http://3.111.21.73:27017/api/v1/patient/validateTokenPatient', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`
@@ -27,7 +27,7 @@ const Navbar = () => {
           if (responsePatient.ok) {
             setPatientLoggedIn(true);
           } else {
-            const responseConsultant = await fetch('http://localhost:27017/api/v1/consultant/validateTokenConsultant', {
+            const responseConsultant = await fetch('http://3.111.21.73:27017/api/v1/consultant/validateTokenConsultant', {
               method: 'POST',
               headers: {
                 'Authorization': `Bearer ${token}`
