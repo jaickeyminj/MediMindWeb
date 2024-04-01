@@ -27,9 +27,14 @@ model_urls = [
     'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\f26c0d62760e443cbddb8bed5072f7ae\\artifacts\\Random Forest_model',
     'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\41cb613cadff434bb073a7b2011a676f\\artifacts\\Decision Tree_model'
 ]
-
+#remove this for local testing
 model_urls = [
     url.replace('E:\\Computer System Design\\Final Project\\Web\\', 'workspace\\')
+    for url in model_urls
+]
+#remove this for local test
+model_urls = [
+    url.replace('\\', '/')
     for url in model_urls
 ]
 
