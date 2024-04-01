@@ -1,13 +1,14 @@
 from flask import Flask, jsonify, request
 import mlflow
-import pandas as pd
-from nltk.tokenize import word_tokenize
-from nltk.stem import WordNetLemmatizer
-
 import nltk
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('stopwords')
+import pandas as pd
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+
 
 file_name="file.csv"
 
