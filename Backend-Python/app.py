@@ -32,6 +32,10 @@ model_urls = [
     url.replace('E:\\Computer System Design\\Final Project\\Web\\', 'workspace\\')
     for url in model_urls
 ]
+model_urls = [
+    url.replace('\\', '/')
+    for url in model_urls
+]
 
 
 # Load models as PyFuncModels
