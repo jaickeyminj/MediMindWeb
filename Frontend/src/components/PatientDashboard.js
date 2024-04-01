@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchDoctor from './SearchDoctor';
 import AppointmentStatus from './AppointmentStatus';
 import DiseasePrediction from './DiseasePrediction';
+import MedicalReports from './MedicalReports';
 const PatientDashboard = () => {
   const [activeTab, setActiveTab] = useState('search-doctors');
   const [loggedIn, setLoggedIn] = useState(false);
@@ -79,7 +80,7 @@ const PatientDashboard = () => {
               {activeTab === 'search-doctors' && <SearchDoctor/>}
               {activeTab === 'disease-prediction' && <DiseasePrediction/>}
               {activeTab === 'appointment-status' && <AppointmentStatus/>}
-              {activeTab === 'medical-reports' && <h2>Medical Reports</h2>}
+              {activeTab === 'medical-reports' && <MedicalReports/>}
               {activeTab === 'update-profile' && <h2>Update Profile</h2>}
               {/* Add content for additional tabs */}
             </div>
