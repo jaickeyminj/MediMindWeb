@@ -8,7 +8,7 @@ const DoctorDetails = ({ doctorId }) => {
     const fetchDoctorDetails = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:27017/api/v1/patient/getConsultantsData', {
+        const response = await fetch('http://3.111.21.73:27017/api/v1/patient/getConsultantsData', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const DoctorDetails = ({ doctorId }) => {
   const handleBookAppointment = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:27017/api/v1/patient/RequestAppointment', {
+      const response = await fetch('http://3.111.21.73:27017/api/v1/patient/RequestAppointment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PatientDashboard from './PatientDashboard';
-
+import { Link } from 'react-router-dom';
 const UserLoginOffcanvas = ({ onClose }) => {
   const [loginMode, setLoginMode] = useState(true);
   const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ const UserLoginOffcanvas = ({ onClose }) => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await fetch('http://localhost:27017/api/v1/patient/validateTokenPatient', {
+          const response = await fetch('http://3.111.21.73:27017/api/v1/patient/validateTokenPatient', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`
@@ -63,7 +63,7 @@ const UserLoginOffcanvas = ({ onClose }) => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:27017/api/v1/patient/login', {
+      const response = await fetch('http://3.111.21.73:27017/api/v1/patient/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ const UserLoginOffcanvas = ({ onClose }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:27017/api/v1/patient/signup', {
+      const response = await fetch('http://3.111.21.73:27017/api/v1/patient/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ const UserLoginOffcanvas = ({ onClose }) => {
       {showCanvas && (
         <div className={`offcanvas-container ${showCanvas ? 'show' : ''}`}>
           <div className="offcanvas" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={handleCloseMenu}>X</button>
+            <Link to="/"><button className="close-btn" onClick={handleCloseMenu}>X</button></Link>
             <>
               {loginMode ? (
                 <form onSubmit={handleLoginSubmit}>
