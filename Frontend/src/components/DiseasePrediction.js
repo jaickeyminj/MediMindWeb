@@ -69,7 +69,6 @@ const DiseasePrediction = () => {
 
   return (
     <div className="container">
-        
       <div className="container3">
       <h2>Disease Prediction</h2>
         <div className="options">
