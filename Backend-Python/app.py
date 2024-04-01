@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import mlflow
 import nltk
 nltk.download('punkt')
@@ -13,6 +14,7 @@ from nltk.stem import WordNetLemmatizer
 file_name="file.csv"
 
 app = Flask(__name__)
+CORS(app)  
 
 # Path to the MLFlow logged model
 logged_model = 'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\LogisticRegression_model'
@@ -28,15 +30,15 @@ model_urls = [
     'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\41cb613cadff434bb073a7b2011a676f\\artifacts\\DecisionTree_model'
 ]
 #remove this for local testing
-model_urls = [
-    url.replace('E:\\Computer System Design\\Final Project\\Web\\', 'workspace\\')
-    for url in model_urls
-]
-#remove this for local test
-model_urls = [
-    '/' + url.replace('\\', '/')
-    for url in model_urls
-]
+# model_urls = [
+#     url.replace('E:\\Computer System Design\\Final Project\\Web\\', 'workspace\\')
+#     for url in model_urls
+# ]
+# #remove this for local test
+# model_urls = [
+#     '/' + url.replace('\\', '/')
+#     for url in model_urls
+# ]
 
 
 # Load models as PyFuncModels
@@ -169,10 +171,16 @@ def predict_diagnosis():
     return jsonify({"predictions": output_disease})
 
 
-@app.route('/analyze')
+@app.route('/analyze',methods=['POST'])
 def analyze_symptoms():
     # Get user input from request data
-    user_input = "I fever"
+    
+    # print("Inside")
+    user_input = request.json.get('symptoms')
+    # print(user_input)
+    # print(request.json.get('age'))
+    if not user_input:
+        return "No symptoms provided", 400
 
     # Tokenize and lemmatize user input
     tokens = word_tokenize(user_input)
