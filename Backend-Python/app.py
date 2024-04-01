@@ -229,8 +229,12 @@ def find_most_frequent_name(names):
 
 
 
+# if __name__ == '__main__':
+#     app.run(debug=True,port = 8000)
+#For AWS
 if __name__ == '__main__':
-    app.run(debug=True,port = 8000)
+    app.run(debug=True, port=8000, host='0.0.0.0')
+
 
 
 
