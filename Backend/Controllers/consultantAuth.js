@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
-const Consultant = require("../models/consultant"); 
+const Consultant = require("../Models/consultant"); 
 const jwt = require('jsonwebtoken');
-const { generateToken } = require("../utils/authUtils");
+const { generateToken } = require("../Utils/authUtils");
 
 
 exports.consultantSignup = async (req, res) => {

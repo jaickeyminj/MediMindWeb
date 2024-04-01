@@ -11,7 +11,7 @@ const GetAppointments = () => {
                 return;
             }
 
-            const response = await fetch('http://localhost:27017/api/v1/consultant/getRequestedAppointmentList', {
+            const response = await fetch('http://3.111.21.73:27017/api/v1/consultant/getRequestedAppointmentList', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -43,7 +43,7 @@ const GetAppointments = () => {
                 return;
             }
 
-            const response = await fetch('http://localhost:27017/api/v1/consultant/acceptAppointmentRequest', {
+            const response = await fetch('http://3.111.21.73:27017/api/v1/consultant/acceptAppointmentRequest', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const GetAppointments = () => {
                 return;
             }
 
-            const response = await fetch('http://localhost:27017/api/v1/consultant/rejectAppointmentRequest', {
+            const response = await fetch('http://3.111.21.73:27017/api/v1/consultant/rejectAppointmentRequest', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

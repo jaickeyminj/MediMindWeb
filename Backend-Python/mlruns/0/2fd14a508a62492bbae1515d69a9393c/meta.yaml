@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Computer%20System%20Design/MLFlow/mlruns/0/2fd14a508a62492bbae1515d69a9393c/artifacts
+end_time: 1711798755401
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2fd14a508a62492bbae1515d69a9393c
+run_name: Gradient Boosting Classifier
+run_uuid: 2fd14a508a62492bbae1515d69a9393c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711798747669
+status: 3
+tags: []
+user_id: jaick
