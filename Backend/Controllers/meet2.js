@@ -12,7 +12,7 @@ const calendar = google.calendar({
 const oauth2Client = new google.auth.OAuth2(
     "695738836432-q6e95lmhsof2eteblf9m9i1pmg0f5kcm.apps.googleusercontent.com",
     "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",
-    "http://3.111.21.73:27017/api/v1/patient/handleGoogleRedirect"
+    "http://jaickeyjoyminj.online:27017/api/v1/patient/handleGoogleRedirect"
 );
 
 const scopes = [

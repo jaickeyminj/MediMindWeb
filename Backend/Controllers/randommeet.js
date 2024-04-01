@@ -15,7 +15,7 @@ const calendar = google.calendar({
 const oauth2Client = new google.auth.OAuth2(
     "976403191613-mth034ign9t4tskbu3na420cl8cbdap1.apps.googleusercontent.com",
     "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",
-    "http://3.111.21.73:8000/google/redirect"
+    "http://jaickeyjoyminj.online:27017/google/redirect"
   );
 
   const scopes = [
