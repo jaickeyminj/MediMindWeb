@@ -63,7 +63,7 @@ const SearchDoctor = () => {
                 },
                 body: JSON.stringify({ date: selectedDate, time: selectedTime, consultantId })
             });
-
+    
             if (response.ok) {
                 console.log('Appointment requested successfully!');
                 // Handle success response
@@ -76,7 +76,7 @@ const SearchDoctor = () => {
             // Handle error
         }
     };
-
+    
 
     return (
         <div className="search-container">
@@ -126,10 +126,9 @@ const SearchDoctor = () => {
                     {!isLoading && consultants.length > 0 && (
                         <div className="consultants-list">
                             <h2>Consultants</h2>
-                            <div >                            
-                            <ul className='container2'>
+                            <ul>
                                 {consultants.map((consultant) => (
-                                    <li key={consultant._id} className='consultant-card'>
+                                    <li key={consultant._id}>
                                         <h3>{consultant.name}</h3>
                                         <div className='consultant-details'>
                                             <div>
@@ -141,28 +140,15 @@ const SearchDoctor = () => {
 
                                         </div>
                                         <p>Available Times:</p>
-                                        <select value={selectedTime} onChange={handleTimeChange}>
-                                            <option value="">See Available Times</option>
-                                            {consultant.availabilityTime.map((timeSlot) => {
-                                                // Extracting hours from the time slot
-                                                const startTimeHours = parseInt(timeSlot.startTime.split(':')[0], 10);
-                                                const endTimeHours = parseInt(timeSlot.endTime.split(':')[0], 10);
-
-                                                // Determining AM or PM based on hours
-                                                const startPeriod = startTimeHours < 12 ? 'AM' : 'PM';
-                                                const endPeriod = endTimeHours < 12 ? 'AM' : 'PM';
-
-                                                return (
-                                                    <option key={timeSlot._id} value={`${timeSlot.day}: ${timeSlot.startTime} - ${timeSlot.endTime}`}>
-                                                        {`${timeSlot.day}: ${timeSlot.startTime} ${startPeriod} - ${timeSlot.endTime} ${endPeriod}`}
-                                                    </option>
-                                                );
-                                            })}
-                                        </select>
-
-
+                                        <ul>
+                                            {consultant.availabilityTime.map((timeSlot) => (
+                                                <li key={timeSlot._id}>
+                                                    {timeSlot.day}: {timeSlot.startTime} - {timeSlot.endTime}
+                                                </li>
+                                            ))}
+                                        </ul>
                                         <form >
-                                            <p>Request Appointment</p>
+                                        <p>Request Appointment</p>
                                             <div className="form-group">
                                                 <label htmlFor="date">Date:</label>
                                                 <input
@@ -173,8 +159,8 @@ const SearchDoctor = () => {
                                                     onChange={handleDateChange}
                                                     required
                                                 />
-
-
+                                            
+                                           
                                                 <label htmlFor="time">Time:</label>
                                                 <input
                                                     type="time"
@@ -188,11 +174,10 @@ const SearchDoctor = () => {
                                             <button onClick={(event) => handleBookAppointment(event, consultant._id)}>Request Appointment</button>
 
                                         </form>
-
+                                    
                                     </li>
                                 ))}
                             </ul>
-                            </div>
                         </div>
                     )}
                 </div>

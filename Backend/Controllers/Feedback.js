@@ -1,4 +1,4 @@
-const Patient = require("../models/patient");
+const Patient = require("../Models/patient");
 
 exports.addFeedback = async (req, res) => {
     try {

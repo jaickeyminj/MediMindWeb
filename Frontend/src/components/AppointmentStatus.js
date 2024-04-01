@@ -34,7 +34,7 @@ const AppointmentStatus = () => {
     const handlePayment = async (appointmentId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:27017/api/v1/patient/razorpay/order', {
+            const response = await fetch('http://localhost:27017/api/v1/patient/payAppointmentFee', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,13 +44,13 @@ const AppointmentStatus = () => {
             });
 
             if (response.ok) {
-                console.log('Payment request sent successfully!');
-                // Handle response or update state as needed
+                console.log('Payment successful!');
+                // Refresh appointment data or update state as needed
             } else {
-                console.error('Error sending payment request:', response.statusText);
+                console.error('Error paying appointment fee:', response.statusText);
             }
         } catch (error) {
-            console.error('Error sending payment request:', error);
+            console.error('Error paying appointment fee:', error);
         }
     };
 

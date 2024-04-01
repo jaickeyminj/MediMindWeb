@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
-const Patient = require("../models/patient");
+const Patient = require("../Models/patient");
 const jwt = require('jsonwebtoken');
-const { generateToken } = require("../utils/authUtils");
+const { generateToken } = require("../Utils/authUtils");
 
 exports.patientSignup = async (req, res) => {
     try {
