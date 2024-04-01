@@ -15,17 +15,17 @@ file_name="file.csv"
 app = Flask(__name__)
 
 # Path to the MLFlow logged model
-logged_model = 'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\Logistic Regression_model'
+logged_model = 'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\LogisticRegression_model'
 
 
 model_urls = [
-    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\Logistic Regression_model',
-    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\4611a12ea18e4bd388c55dd3b0251ba1\\artifacts\\Neural Network_model',
-    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\1ce959957e834d438c76d502e74a6470\\artifacts\\Naive Bayes_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\LogisticRegression_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\4611a12ea18e4bd388c55dd3b0251ba1\\artifacts\\NeuralNetwork_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\1ce959957e834d438c76d502e74a6470\\artifacts\\NaiveBayes_model',
     'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\06297adce47a4eb3a11e13ab87f966d5\\artifacts\\SVM_model',
-    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\2fd14a508a62492bbae1515d69a9393c\\artifacts\\Gradient Boosting_model',
-    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\f26c0d62760e443cbddb8bed5072f7ae\\artifacts\\Random Forest_model',
-    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\41cb613cadff434bb073a7b2011a676f\\artifacts\\Decision Tree_model'
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\2fd14a508a62492bbae1515d69a9393c\\artifacts\\GradientBoosting_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\f26c0d62760e443cbddb8bed5072f7ae\\artifacts\\RandomForest_model',
+    'E:\\Computer System Design\\Final Project\\Web\\MediMindWeb\\Backend-Python\\mlruns\\0\\41cb613cadff434bb073a7b2011a676f\\artifacts\\DecisionTree_model'
 ]
 #remove this for local testing
 model_urls = [
