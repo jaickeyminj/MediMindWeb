@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SearchDoctor from './SearchDoctor';
 import AppointmentStatus from './AppointmentStatus';
+import DiseasePrediction from './DiseasePrediction';
 const PatientDashboard = () => {
   const [activeTab, setActiveTab] = useState('search-doctors');
   const [loggedIn, setLoggedIn] = useState(false);
@@ -76,7 +77,7 @@ const PatientDashboard = () => {
           <div className="container">
             <div className="content">
               {activeTab === 'search-doctors' && <SearchDoctor/>}
-              {activeTab === 'disease-prediction' && <h2>Disease-prediction</h2>}
+              {activeTab === 'disease-prediction' && <DiseasePrediction/>}
               {activeTab === 'appointment-status' && <AppointmentStatus/>}
               {activeTab === 'medical-reports' && <h2>Medical Reports</h2>}
               {activeTab === 'update-profile' && <h2>Update Profile</h2>}

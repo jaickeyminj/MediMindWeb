@@ -115,7 +115,7 @@
   text-decoration: none;
   font-size: 18px;
   background-color: none;
-  cursor: pointer;
+  
 
 }
 
@@ -219,24 +219,24 @@ p {
   width: min-content;
   padding: 20px;
   min-height: 100vh;
-  background-color: #5ca6ef;
-  
+  position:fixed;
+  background-color: #565819;
+  opacity: 80%;
 }
 
 .content {
   display: flex;
-    padding: 20px;
-    width: 100%;
-    align-items: stretch;
-    justify-content: flex-start;
+  padding: 20px;
+  width: 100%;
+  align-items: stretch;
+  justify-content: center;
  
 }
 .container2{
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Adjust as needed */
-  flex-direction: column;
-  width: 100%;
+    gap: 20px;
+    flex-direction: row;
+    width: 100%;
 }
 ul {
   list-style-type: none;
@@ -245,10 +245,11 @@ ul {
 }
 
 li {
-  cursor: pointer;
+ 
   padding: 10px 0;
   color: #ffffff;
   font-size: larger;
+  cursor: pointer;
 }
 
 li.active {
@@ -263,89 +264,6 @@ h2 {
 }
 p{
   color: #3220d2;
-}
-/*search doctor*/
-.searchspace {
-  width: 60%;
-}
-
-.search-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.search-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.search-select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.search-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.consultants-list {
-  margin-top: 20px;
-}
-
-.consultants-list ul {
-  list-style: none;
-  padding: 0;
-  
-  font-size: 10px;
-}
-
-.consultants-list li {
-  background-color: #d9a5f0;
-  padding: 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(39, 11, 199, 0.1);
-  background-blend-mode: color-burn;
-}
-
-.consultant-details {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-content: flex-end;
-  align-items: center;
-}
-
-
-.consultant-details img {
-  width: 150px;
-  height: 150px;
-}
-
-.consultants-list h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.consultants-list p {
-  margin: 0px 0;
-}
-
-.consultants-list .form-group {
-  display: flex;
-  
-  justify-content: space-between;
 }
 
 #date {
@@ -448,4 +366,132 @@ p{
 .appointment-card button {
   margin: 8px;
 }
+.appointment-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #cca0a0;
+  width:max-content; /* Adjust width based on your design */
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+  opacity: 80%;
+}
+
+.appointment-card:last-child {
+  margin-right: 0;
+}
+
+.appointment-card div {
+  margin-bottom: 5px;
+}
+
+.appointment-card button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* Adjust button styles as needed */
+
+/*search doctor*/
+.search-container {
+  max-width: 800px;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.consultants-list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  
+  
+}
+.consultant-card{
+  background-color: #ceadde;
+  margin-bottom: 10px;
+  padding: 20px;
+
+  width: max-content;
+}
+
+.consultant-details {
+  display: flex;
+  align-items: center;
+}
+
+.consultant-details img {
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
+  border-radius: 50%;
+}
+
+.consultant-details div {
+  margin-right: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input[type="date"],
+input[type="time"]
+ {
+  padding: 10px;
+  width:fit-content;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* disease prediction */
+.container3 {
+  max-width:max-content;
+  margin-left: 20%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.options {
+  margin-bottom: 20px;
+  display: flex; /* Use flexbox */
+  flex-wrap: wrap; /* Allow wrapping */
+  color: #1df127;
+}
+
+.checkbox-option {
+  margin-right: 20px; /* Add spacing between options */
+}
+
+.checkbox-option input[type="checkbox"] {
+  margin-right: 5px; /* Adjust checkbox spacing */
+}
+
+.checkbox-option label {
+  font-size: 16px;
+}
+
 
