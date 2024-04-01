@@ -469,17 +469,18 @@ input[type="time"]
 /* disease prediction */
 .container3 {
   max-width:max-content;
-  margin-left: 20%;
+  margin-left: 200px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #cca0a0;
 }
 
 .options {
   margin-bottom: 20px;
   display: flex; /* Use flexbox */
   flex-wrap: wrap; /* Allow wrapping */
-  color: #1df127;
+  color: #1b0105;
 }
 
 .checkbox-option {
