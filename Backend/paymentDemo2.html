@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Razorpay Payment</h1>
-    <form action="http://3.111.21.73:27017/api/v1/patient/razorpay/order" method="POST">
+    <form action="http://localhost:27017/api/v1/patient/razorpay/order" method="POST">
         <label for="amount">Amount:</label>
         <input type="text" id="amount" name="amount" required>
         <button type="submit">Pay Now</button>
@@ -17,7 +17,7 @@
         document.querySelector('form').addEventListener('submit', async function(event) {
             event.preventDefault();
             const amount = document.getElementById('amount').value;
-            const response = await fetch('http://3.111.21.73:27017/api/v1/patient/razorpay/order', {
+            const response = await fetch('http://localhost:27017/api/v1/patient/razorpay/order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

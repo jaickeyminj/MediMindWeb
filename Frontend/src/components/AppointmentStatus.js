@@ -8,7 +8,7 @@ const AppointmentStatus = () => {
         const fetchAppointments = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('http://3.111.21.73:27017/api/v1/patient/getallAppointmentsForPatient', {
+                const response = await fetch('http://localhost:27017/api/v1/patient/getallAppointmentsForPatient', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ const AppointmentStatus = () => {
     const handlePayment = async (appointmentId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://3.111.21.73:27017/api/v1/patient/payAppointmentFee', {
+            const response = await fetch('http://localhost:27017/api/v1/patient/payAppointmentFee', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
