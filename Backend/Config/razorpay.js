@@ -1,4 +1,5 @@
 const Razorpay = require('razorpay'); 
+const Appointment = require('../Models/appointment');
 const { v4: uuid } = require("uuid");
 require("dotenv").config();
 // This razorpayInstance will be used to 
@@ -62,6 +63,7 @@ exports.createRazorpayOrder = (req, res) => {
 
              console.log(appointmentId);
             const appointment = await Appointment.findById(appointmentId);
+            console.log(appointment);
             if (appointment) {
                 appointment.isPaid = true;
                 // Deduct the fee from the appointment object if necessary
