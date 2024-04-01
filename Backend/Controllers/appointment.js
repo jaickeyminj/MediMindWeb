@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const Appointment = require('../Models/appointment');
-const Consultant = require('../Models/consultant');
-const Patient = require('../Models/patient');
+const Appointment = require('../models/appointment');
+const Consultant = require('../models/consultant');
+const Patient = require('../models/patient');
 const moment = require('moment');
 
 exports.createAppointment = async (req, res) => {

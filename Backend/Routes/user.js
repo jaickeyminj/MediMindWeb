@@ -8,21 +8,22 @@ const {consultantSignup, consultantLogin, updateAvailabilityTime, validateTokenC
 const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = require("../Controllers/searchConsultant");
 const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest } = require("../Controllers/appointment");
 
-const { handleAppointment, handleGoogleRedirect,scheduleEvent} = require("../Controllers/meet2");
+const { redirectToGoogle, handleGoogleRedirect,scheduleEvent} = require("../Controllers/meet2");
 const { createRazorpayOrder} = require("../Config/razorpay");
-const { storeReportLink } = require("../Controllers/uploadReports");
+const { uploadDemo } = require("../Controllers/sampleUploadImage");
 //const upload = require("../middlewares/multer");
 
 router.post("/patient/login",patientLogin);  
 router.post("/patient/signup", patientSignup);
 router.post("/patient/validateTokenPatient", validateTokenPatient);
 router.post("/patient/SearchConsultant", searchConsultantBySpecialty);
-router.get("/patient/getAllConsultants", getAllConsultants);
-router.get("/patient/getConsultantsData", getConsultantsData);
+
+router.post("/patient/getAllConsultants", getAllConsultants);
+router.post("/patient/getConsultantsData", getConsultantsData);
+
 router.put("/patient/updatePatientData", updatePatientData);
 router.post("/patient/RequestAppointment", createAppointment);
 router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient);
-router.post("/UploadReports",upload.array("files", 12),storeReportLink);
 //router.post("/patient/uploadReports", upload.single("image"), patientSignup);
 
 
@@ -59,13 +60,13 @@ router.post("/consultant/updateAvailabilityTime",updateAvailabilityTime);
 // router.post("/vendor/addcategoryproduct",vendorCategory);
 // router.post("/vendor/add-product", upload.single("image"), vendorAddProduct);  //given the category name
 
-router.post("/patient/getMeetlink",handleAppointment);
-router.post("/patient/handleGoogleRedirect",handleGoogleRedirect);
-router.post("/patient/scheduleEvent",scheduleEvent);
+router.get("/patient/getMeetlink",redirectToGoogle);
+router.get("/patient/handleGoogleRedirect",handleGoogleRedirect);
+router.get("/patient/scheduleEvent",scheduleEvent);
 
 router.post("/patient/razorpay/order",createRazorpayOrder);
 
-
+router.post("/sampleUpload",upload.array("files", 12),uploadDemo);
 
 
 module.exports = router;
