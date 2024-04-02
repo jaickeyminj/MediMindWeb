@@ -8,7 +8,7 @@ const {consultantSignup, consultantLogin, updateAvailabilityTime, validateTokenC
 const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = require("../Controllers/searchConsultant");
 const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest } = require("../Controllers/appointment");
 
-const { handleAppointment, handleGoogleRedirect,scheduleEvent} = require("../Controllers/meet2");
+const { handleAppointment, handleGoogleRedirect,scheduleEvent,redirectToGoogle} = require("../Controllers/meet2");
 const { createRazorpayOrder} = require("../Config/razorpay");
 const { storeReportLink, getAllReportIds } = require("../Controllers/uploadReports");
 //const upload = require("../middlewares/multer");
@@ -60,9 +60,9 @@ router.post("/consultant/updateAvailabilityTime",updateAvailabilityTime);
 // router.post("/vendor/addcategoryproduct",vendorCategory);
 // router.post("/vendor/add-product", upload.single("image"), vendorAddProduct);  //given the category name
 
-router.post("/patient/getMeetlink",handleAppointment);
-router.post("/patient/handleGoogleRedirect",handleGoogleRedirect);
-router.post("/patient/scheduleEvent",scheduleEvent);
+router.get("/patient/getMeetlink",redirectToGoogle);
+router.get("/patient/handleGoogleRedirect",handleGoogleRedirect);
+router.get("/patient/scheduleEvent",scheduleEvent);
 
 router.post("/patient/razorpay/order",createRazorpayOrder);
 

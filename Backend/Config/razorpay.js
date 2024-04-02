@@ -1,6 +1,7 @@
 const Razorpay = require('razorpay'); 
 const Appointment = require('../Models/appointment');
 const { v4: uuid } = require("uuid");
+const meet2Controller = require('../Controllers/meet2');
 require("dotenv").config();
 // This razorpayInstance will be used to 
 // access any resource from razorpay 
@@ -53,25 +54,22 @@ exports.createRazorpayOrder = (req, res) => {
             res.status(500).json({ error: err });
             return;
         }
+
         console.log(order);
-        res.json(order);
+        //res.json(order);
 
         try {
             // Update appointment status to 'paid' and set isPaid to true
             const appointmentId = req.body.appointmentId;
-             // Assuming you're sending the appointmentId in the request body
-
-             console.log(appointmentId);
             const appointment = await Appointment.findById(appointmentId);
             
             if (appointment) {
                 appointment.isPaid = true;
-                // Deduct the fee from the appointment object if necessary
-                // appointment.fee -= deductedAmount;
                 await appointment.save();
+
+                // Call handleAppointment from meet2 controller with required data
+                console.log(await meet2Controller.scheduleEvent(req, res));
             }
-            console.log("Appointment ...");
-            console.log(appointment);
         } catch (error) {
             console.error("Error updating appointment status:", error);
         }
