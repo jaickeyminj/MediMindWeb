@@ -57,7 +57,7 @@ const AppointmentStatus = () => {
                     order_id: order.id,
                     handler: function (response) {
                         console.log(response);
-                        alert(response);
+                        alert(response.razorpay_order_id);
 
                         // You can handle success response here
                     },
