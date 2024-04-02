@@ -1,0 +1,41 @@
+{
+  "_events": {},
+  "_eventsCount": 0,
+  "credentials": {
+    "access_token": "ya29.a0Ad52N39v8lmosFXaXWrTd8ZGZJnJwKhmkJUM1ObntRctu5Im_lCBLVZEydil7eMYanTnSCQHdWto-17OeL8krNocg_kMpZv6xbWbhWuIyL8X1xvpqM6014n48jQld6j3pfV4CrZ1qwSoJkCK03SNoi9QUq70rOqPDdkaCgYKAbcSARISFQHGX2MiWoxqrSYdKxm6O3cVTxyD2g0170",
+    "scope": "https://www.googleapis.com/auth/calendar",
+    "token_type": "Bearer",
+    "expiry_date": 1712049015887
+  },
+  "eagerRefreshThresholdMillis": 300000,
+  "forceRefreshOnFailure": false,
+  "universeDomain": "googleapis.com",
+  "projectId": null,
+  "transporter": {
+    "instance": {
+      "agentCache": {},
+      "defaults": {}
+    }
+  },
+  "certificateCache": {},
+  "certificateExpiry": null,
+  "certificateCacheFormat": "PEM",
+  "refreshTokenPromises": {},
+  "_clientId": "695738836432-q6e95lmhsof2eteblf9m9i1pmg0f5kcm.apps.googleusercontent.com",
+  "_clientSecret": "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",
+  "redirectUri": "http://localhost:27017/api/v1/patient/handleGoogleRedirect",
+  "endpoints": {
+    "tokenInfoUrl": "https://oauth2.googleapis.com/tokeninfo",
+    "oauth2AuthBaseUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+    "oauth2TokenUrl": "https://oauth2.googleapis.com/token",
+    "oauth2RevokeUrl": "https://oauth2.googleapis.com/revoke",
+    "oauth2FederatedSignonPemCertsUrl": "https://www.googleapis.com/oauth2/v1/certs",
+    "oauth2FederatedSignonJwkCertsUrl": "https://www.googleapis.com/oauth2/v3/certs",
+    "oauth2IapPublicKeyUrl": "https://www.gstatic.com/iap/verify/public_key"
+  },
+  "issuers": [
+    "accounts.google.com",
+    "https://accounts.google.com",
+    "googleapis.com"
+  ]
+}
