@@ -80,6 +80,8 @@ exports.consultantLogin = async (req, res) => {
     }
 };
 
+
+/*
 exports.updateAvailabilityTime = async (req, res) => {
     try {
          const authorizationHeader = req.headers['authorization'];
@@ -133,6 +135,63 @@ exports.updateAvailabilityTime = async (req, res) => {
             });
         }
 };
+*/
+
+exports.updateAvailabilityTime = async (req, res) => {
+    try {
+        const { availabilityTime } = req.body;
+
+        const authorizationHeader = req.headers['authorization'];
+        const token = authorizationHeader ? authorizationHeader.substring('Bearer '.length) : null;
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: 'Token not provided',
+            });
+        }
+
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Invalid token',
+                });
+            }
+            
+            
+        const consultantId = decoded.userId;
+
+        const consultant = await Consultant.findById(consultantId);
+
+        if (!consultant) {
+            return res.status(404).json({ success: false, message: 'Consultant not found' });
+        }
+
+        // Update or add new availability time entries
+        availabilityTime.forEach(async (time) => {
+            const existingTime = consultant.availabilityTime.find(item => item.day === time.day);
+            if (existingTime) {
+                // Update existing entry
+                existingTime.startTime = time.startTime;
+                existingTime.endTime = time.endTime;
+            } else {
+                // Add new entry
+                consultant.availabilityTime.push(time);
+            }
+        });
+
+         // Save the updated consultant
+         await consultant.save();
+
+         res.json({ success: true, message: 'Availability time updated successfully', consultant });
+    });
+    } catch (error) {
+        console.error("Error updating availability time:", error);
+        res.status(500).json({ success: false, message: 'Failed to update availability time' });
+    }
+}
+
+
 
 exports.validateTokenConsultant = async (req, res) => {
     try {

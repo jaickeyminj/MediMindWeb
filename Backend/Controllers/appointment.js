@@ -373,3 +373,24 @@ exports.rejectAppointmentRequest = async (req, res) => {
             });
         }
 };
+
+exports.getMeetingLink = async (req, res) => {
+    const appointmentId = req.body.appointmentId;
+
+    try {
+        const appointment = await Appointment.findById(appointmentId);
+        if (!appointment) {
+            return res.status(404).json({ success: false, message: 'Appointment not found' });
+        }
+
+        // Check if the appointment has a meeting link
+        if (!appointment.meetingLink) {
+            return res.status(404).json({ success: false, message: 'Meeting link not found for this appointment' });
+        }
+
+        return res.json({ success: true, meetingLink: appointment.meetingLink });
+    } catch (error) {
+        console.error('Error fetching meeting link:', error);
+        return res.status(500).json({ success: false, message: 'Failed to fetch meeting link' });
+    }
+};
