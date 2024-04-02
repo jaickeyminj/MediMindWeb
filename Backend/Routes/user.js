@@ -6,7 +6,7 @@ const upload = require("../middlewares/multer")
 const {patientSignup, patientLogin, updatePatientData, validateTokenPatient} = require("../Controllers/patientAuth");
 const {consultantSignup, consultantLogin, updateAvailabilityTime, validateTokenConsultant } = require("../Controllers/consultantAuth");
 const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = require("../Controllers/searchConsultant");
-const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest } = require("../Controllers/appointment");
+const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest, getMeetingLink } = require("../Controllers/appointment");
 
 const { handleAppointment, handleGoogleRedirect,scheduleEvent,redirectToGoogle} = require("../Controllers/meet2");
 const { createRazorpayOrder, createMeetLink} = require("../Config/razorpay");
@@ -24,6 +24,8 @@ router.post("/patient/RequestAppointment", createAppointment);
 router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient);
 router.post("/UploadReports",upload.array("files", 12),storeReportLink);
 router.post("/getAllReportIds",getAllReportIds);
+router.post("/getMeetingLink",getMeetingLink);
+
 //router.post("/patient/uploadReports", upload.single("image"), patientSignup);
 
 
