@@ -4,6 +4,7 @@ import SearchDoctor from './SearchDoctor';
 import AppointmentStatus from './AppointmentStatus';
 import DiseasePrediction from './DiseasePrediction';
 import MedicalReports from './MedicalReports';
+import UpdateDetails from './UpdateDetails';
 const PatientDashboard = () => {
   const [activeTab, setActiveTab] = useState('search-doctors');
   const [loggedIn, setLoggedIn] = useState(false);
@@ -81,7 +82,7 @@ const PatientDashboard = () => {
               {activeTab === 'disease-prediction' && <DiseasePrediction/>}
               {activeTab === 'appointment-status' && <AppointmentStatus/>}
               {activeTab === 'medical-reports' && <MedicalReports/>}
-              {activeTab === 'update-profile' && <h2>Update Profile</h2>}
+              {activeTab === 'update-profile' && <UpdateDetails/>}
               {/* Add content for additional tabs */}
             </div>
           </div>

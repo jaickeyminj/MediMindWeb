@@ -25,7 +25,7 @@ const ConsultantLoginOffcanvas = ({ onClose }) => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await fetch('http://localhost:27017/api/v1/consultant/validateTokenPatient', {
+          const response = await fetch('http://localhost:27017/api/v1//consultant/validateTokenConsultant', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`

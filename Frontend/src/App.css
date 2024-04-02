@@ -207,7 +207,7 @@ p {
 
 /*patient dashboard */
 .devider {
-  display: flex;
+display: flex;
 }
 
 .container {
@@ -219,7 +219,6 @@ p {
   width: min-content;
   padding: 20px;
   min-height: 100vh;
-  position:fixed;
   background-color: #565819;
   opacity: 80%;
 }
@@ -469,7 +468,7 @@ input[type="time"]
 /* disease prediction */
 .container3 {
   max-width:max-content;
-  margin-left: 200px;
+  
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
