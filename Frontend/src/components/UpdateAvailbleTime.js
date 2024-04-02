@@ -12,17 +12,21 @@ const UpdateAvailableTime = ({ token }) => {
   useEffect(() => {
     const fetchPreviousAvailability = async () => {
       try {
+        const token = localStorage.getItem('token');
+        const id = localStorage.getItem('_id');
         const response = await fetch('http://localhost:27017/api/v1/patient/getConsultantsData', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({ id: "65fac4e85c65469fef15e208" })
+          body: JSON.stringify({ "id": id })
         });
         if (response.ok) {
           const data = await response.json();
-          setPreviousAvailability(data.availabilityTime);
+          
+          setPreviousAvailability(data.consultants.availabilityTime);
+          console.log(previousAvailability)
         } else {
           const errorData = await response.json();
           alert('Failed to fetch previous availability time: ' + errorData.message);
@@ -52,13 +56,16 @@ const UpdateAvailableTime = ({ token }) => {
 
   const handleConfirm = async () => {
     try {
+      const token = localStorage.getItem('token');
+      const id = localStorage.getItem('_id');
+      console.log(newAvailability)
       const response = await fetch('http://localhost:27017/api/v1/consultant/updateAvailabilityTime', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ availabilityTime: availability })
+        body: JSON.stringify({ availabilityTime: newAvailability })
       });
       if (response.ok) {
         alert('Availability time updated successfully!');
@@ -73,15 +80,32 @@ const UpdateAvailableTime = ({ token }) => {
   };
 
   return (
-    <div>
-      <h2>Add Availability Time</h2>
-      <h3>Previous Availability</h3>
-      <ul>
-        {previousAvailability.map((item, index) => (
-          <li key={index}>{item.day} - {item.startTime} to {item.endTime}</li>
-        ))}
-      </ul>
+    <div className='container3'>
+
+      
       <div>
+        <h3>Your Availability</h3>
+        <select  >
+          <option value="">See Available Times</option>
+          {previousAvailability.map((timeSlot) => {
+            // Extracting hours from the time slot
+            const startTimeHours = parseInt(timeSlot.startTime.split(':')[0], 10);
+            const endTimeHours = parseInt(timeSlot.endTime.split(':')[0], 10);
+
+            // Determining AM or PM based on hours
+            const startPeriod = startTimeHours < 12 ? 'AM' : 'PM';
+            const endPeriod = endTimeHours < 12 ? 'AM' : 'PM';
+
+            return (
+              <option key={timeSlot._id} value={`${timeSlot.day}: ${timeSlot.startTime} - ${timeSlot.endTime}`}>
+                {`${timeSlot.day}: ${timeSlot.startTime} ${startPeriod} - ${timeSlot.endTime} ${endPeriod}`}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div>
+      <h2>Add Availability Time</h2>
         <label>Day:</label>
         <select name="day" value={newAvailability.day} onChange={handleChange}>
           <option value="">Select Day</option>
@@ -102,7 +126,6 @@ const UpdateAvailableTime = ({ token }) => {
         <label>End Time:</label>
         <input type="time" name="endTime" value={newAvailability.endTime} onChange={handleChange} />
       </div>
-      <button onClick={handleAddAvailability}>+ Add</button>
       <button onClick={handleConfirm}>Confirm</button>
     </div>
   );

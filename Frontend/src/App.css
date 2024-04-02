@@ -484,10 +484,12 @@ input[type="time"]
 
 .checkbox-option {
   margin-right: 20px; /* Add spacing between options */
+  
 }
 
 .checkbox-option input[type="checkbox"] {
   margin-right: 5px; /* Adjust checkbox spacing */
+  
 }
 
 .checkbox-option label {
