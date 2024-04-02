@@ -31,7 +31,7 @@ const AppointmentStatus = () => {
         fetchAppointments();
     }, []);
 
-    const handlePayment = async (appointmentId,amount) => {
+    const handlePayment = async (appointmentId, amount) => {
         try {
             console.log(appointmentId)
             const token = localStorage.getItem('token');
@@ -41,12 +41,37 @@ const AppointmentStatus = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ "appointmentId":appointmentId,"amount":amount })
+                body: JSON.stringify({ "appointmentId": appointmentId, "amount": amount })
             });
-
+           <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
             if (response.ok) {
-                console.log('Payment request sent successfully!');
-                // Handle response or update state as needed
+                const order = await response.json();
+                console.log(order)
+                const options = {
+                    key: 'rzp_test_Au3bh7uy56GXOh', // Replace with your Razorpay key
+                    amount: order.amount,
+                    currency: order.currency,
+                    name: 'Medi Mind',
+                    description: "Doctor's Appointment",
+                    image: "https://cdn5.vectorstock.com/i/1000x1000/58/79/healthcare-hospital-logo-clinic-doctor-vector-29695879.jpg",
+                    order_id: order.id,
+                    handler: function (response) {
+                        console.log(response);
+                        alert(response);
+
+                        // You can handle success response here
+                    },
+                    prefill: {
+                        name: "Saurabh Singh", // your customer's name
+                        email: "saurabh.kumar@example.com",
+                        contact: "9000091234" // Provide the customer's phone number for better conversion rates
+                    },
+                    notes: {
+                        address: "Razorpay Corporate Office"
+                    },
+                };
+                const rzp1 = new window.Razorpay(options);
+                rzp1.open();
             } else {
                 console.error('Error sending payment request:', response.statusText);
             }
@@ -87,7 +112,7 @@ const AppointmentStatus = () => {
                                     <td>{appointment.isConfirmedByConsultant ? 'Confirmed' : 'Pending'}</td>
                                     <td>
                                         {appointment.isConfirmedByConsultant && !appointment.isPaid && (
-                                            <button onClick={() => handlePayment(appointment._id,appointment.fee)}>Pay Fee</button>
+                                            <button onClick={() => handlePayment(appointment._id, appointment.fee)}>Pay Fee</button>
                                         )}
                                     </td>
                                 </tr>
