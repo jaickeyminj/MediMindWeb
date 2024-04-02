@@ -49,7 +49,7 @@ const AppointmentStatus = () => {
                 console.log(order)
                 const options = {
                     key: 'rzp_test_Au3bh7uy56GXOh', // Replace with your Razorpay key
-                    amount: order.amount,
+                    amount: (order.amount)*100,
                     currency: order.currency,
                     name: 'Medi Mind',
                     description: "Doctor's Appointment",

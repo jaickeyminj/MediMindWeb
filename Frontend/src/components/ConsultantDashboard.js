@@ -67,7 +67,7 @@ const ConsultantDashboard = () => {
               <li><h3>Welcome {name}</h3></li>
               <li className={activeTab === 'appointment_requests' ? 'active' : ''} onClick={() => handleTabChange('appointment_requests')}>Appointment Requests</li>
               <li className={activeTab === 'scheduled_appointments' ? 'active' : ''} onClick={() => handleTabChange('scheduled_appointments')}>Scheduled Appointments</li>
-              <li className={activeTab === 'update_time' ? 'active' : ''} onClick={() => handleTabChange('update-time')}>Update Available Time</li>
+              <li className={activeTab === 'update_time' ? 'active' : ''} onClick={() => handleTabChange('update_time')}>Update Available Time</li>
               <li onClick={handleLogout}><Link to="/">Logout</Link></li>
               {/* Add more navigation options here */}
             </ul>
