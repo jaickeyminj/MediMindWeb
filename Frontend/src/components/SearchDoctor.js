@@ -65,14 +65,14 @@ const SearchDoctor = () => {
             });
 
             if (response.ok) {
-                console.log('Appointment requested successfully!');
+                alert('Appointment requested successfully!');
                 // Handle success response
             } else {
-                console.error('Error requesting appointment:', response.statusText);
+                alert('Error requesting appointment:', response.statusText);
                 // Handle error response
             }
         } catch (error) {
-            console.error('Error requesting appointment:', error);
+            alert('Error requesting appointment:', error);
             // Handle error
         }
     };
