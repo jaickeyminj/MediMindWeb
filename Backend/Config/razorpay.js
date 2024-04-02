@@ -39,6 +39,7 @@ exports.createRazorpayOrder = (req, res) => {
 exports.createRazorpayOrder = (req, res) => {
     console.log("create order");
     const amount = req.body.amount; // Amount in the smallest currency unit
+    console.log(req.body);
     const currency = 'INR';
     const receipt = "receipt_order_";
 
@@ -56,22 +57,28 @@ exports.createRazorpayOrder = (req, res) => {
         }
 
         console.log(order);
-        //res.json(order);
-
-        try {
-            // Update appointment status to 'paid' and set isPaid to true
-            const appointmentId = req.body.appointmentId;
-            const appointment = await Appointment.findById(appointmentId);
-            
-            if (appointment) {
-                appointment.isPaid = true;
-                await appointment.save();
-
-                // Call handleAppointment from meet2 controller with required data
-                console.log(await meet2Controller.scheduleEvent(req, res));
-            }
-        } catch (error) {
-            console.error("Error updating appointment status:", error);
-        }
+        res.json(order);    
     });
 };
+
+exports.createMeetLink = async (req,res) => {
+    try {
+        // Update appointment status to 'paid' and set isPaid to true
+        const appointmentId = req.body.appointmentId;
+        const appointment = await Appointment.findById(appointmentId);
+        
+        if (appointment) {
+            var res1 = await meet2Controller.scheduleEvent(req, res);
+            appointment.isPaid = true;
+            await appointment.save();
+
+            // Call handleAppointment from meet2 controller with required data
+            
+            // res.status(200).json(order);
+            console.log(res1);
+            return res.json(res1);
+        }
+    } catch (error) {
+        console.error("Error updating appointment status:", error);
+    }
+}
