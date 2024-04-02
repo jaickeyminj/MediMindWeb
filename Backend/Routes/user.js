@@ -65,7 +65,7 @@ router.get("/patient/handleGoogleRedirect",handleGoogleRedirect);
 router.get("/patient/scheduleEvent",scheduleEvent);
 
 router.post("/patient/razorpay/order",createRazorpayOrder);
-router.get("/patient/createMeetLink",createMeetLink);
+router.post("/patient/createMeetLink",createMeetLink);
 
 
 

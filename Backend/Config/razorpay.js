@@ -57,9 +57,7 @@ exports.createRazorpayOrder = (req, res) => {
         }
 
         console.log(order);
-        res.json(order);
-
-        
+        res.json(order);    
     });
 };
 
@@ -70,13 +68,15 @@ exports.createMeetLink = async (req,res) => {
         const appointment = await Appointment.findById(appointmentId);
         
         if (appointment) {
-            await meet2Controller.scheduleEvent(req, res);
+            var res1 = await meet2Controller.scheduleEvent(req, res);
             appointment.isPaid = true;
             await appointment.save();
 
             // Call handleAppointment from meet2 controller with required data
             
             // res.status(200).json(order);
+            console.log(res1);
+            return res.json(res1);
         }
     } catch (error) {
         console.error("Error updating appointment status:", error);

@@ -55,9 +55,19 @@ const AppointmentStatus = () => {
                     description: "Doctor's Appointment",
                     image: "https://cdn5.vectorstock.com/i/1000x1000/58/79/healthcare-hospital-logo-clinic-doctor-vector-29695879.jpg",
                     order_id: order.id,
-                    handler: function (response) {
+                    handler: async (response)=> {
                         console.log(response);
                         alert(response.razorpay_order_id);
+                        const response1 = await fetch('http://localhost:27017/api/v1//patient/createMeetLink', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ "appointmentId": appointmentId, "amount": amount })
+                        
+                    });
+                        console.log(response1);
 
                         // You can handle success response here
                     },

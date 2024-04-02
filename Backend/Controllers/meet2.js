@@ -284,6 +284,15 @@ async function scheduleEvent(req, res) {
                 }]
             }
         });
+        // const appointmentId = req.body.appointmentId;
+            // const appointment = await Appointment.findById(appointmentId);
+
+            if (appointment) {
+                appointment.meetingLink = result.data.hangoutLink;
+                await appointment.save();
+            }
+            console.log(appointment);
+            console.log(result.data.hangoutLink);
         res.status(200).json({
             success: true,
             msg: "Link Generated",
