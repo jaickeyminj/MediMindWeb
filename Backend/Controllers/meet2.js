@@ -252,6 +252,7 @@ async function scheduleEvent(req, res) {
 
         try{
             console.log("setting token");
+            console.log(tokens1);
             oauth2Client1.setCredentials(tokens1);
             console.log("token set");
         }catch (error) {
