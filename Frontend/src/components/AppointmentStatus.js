@@ -41,7 +41,7 @@ const AppointmentStatus = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ "appointmentId": appointmentId, "amount": amount })
+                body: JSON.stringify({ "appointmentId": appointmentId, "amount": amount*100 })
             });
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
             if (response.ok) {
@@ -141,7 +141,9 @@ const AppointmentStatus = () => {
                                             <button onClick={() => handlePayment(appointment._id, appointment.fee)}>Pay Fee</button>
                                         )}
                                     </td>
-                                    <td>{appointment.meetingLink || '-'}</td>
+                                    {/* <td>{appointment.meetingLink || '-'}</td> */}
+                                    {/* <td>{appointment.meetingLink ? <a href={appointment.meetingLink}>Meeting Link</a> : '-'}</td> */}
+                                    <td>{<a href={appointment.meetingLink}>{appointment.meetingLink}</a> || '-'}</td>
                                 </tr>
                             ))}
                         </tbody>
