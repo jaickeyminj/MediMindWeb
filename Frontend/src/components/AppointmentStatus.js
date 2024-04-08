@@ -58,7 +58,7 @@ const AppointmentStatus = () => {
                     handler: async (response)=> {
                         console.log(response);
                         alert(response.razorpay_order_id);
-                        const response1 = await fetch('http://localhost:27017/api/v1//patient/createMeetLink', {
+                        const meetingLinkResponse = await fetch('http://localhost:27017/api/v1//patient/createMeetLink', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

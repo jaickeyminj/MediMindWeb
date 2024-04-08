@@ -39,7 +39,7 @@ const MedicalReports = () => {
         try {
             const token = localStorage.getItem('token');
             const formData = new FormData();
-            formData.append('file', selectedFile);
+            formData.append('files', selectedFile);
             const response = await fetch('http://localhost:27017/api/v1/UploadReports', {
                 method: 'POST',
                 headers: {

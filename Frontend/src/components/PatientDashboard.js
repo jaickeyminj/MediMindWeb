@@ -5,6 +5,7 @@ import AppointmentStatus from './AppointmentStatus';
 import DiseasePrediction from './DiseasePrediction';
 import MedicalReports from './MedicalReports';
 import UpdateDetails from './UpdateDetails';
+import PreviousPredictions from './PreviousPredictions';
 const PatientDashboard = () => {
   const [activeTab, setActiveTab] = useState('search-doctors');
   const [loggedIn, setLoggedIn] = useState(false);
@@ -69,6 +70,7 @@ const PatientDashboard = () => {
               <li><h3>Welcome {name}</h3></li>
               <li className={activeTab === 'search-doctors' ? 'active' : ''} onClick={() => handleTabChange('search-doctors')}>Search Doctors</li>
               <li className={activeTab === 'disease-prediction' ? 'active' : ''} onClick={() => handleTabChange('disease-prediction')}>Disease Prediction</li>
+              <li className={activeTab === 'previous-predictions' ? 'active' : ''} onClick={() => handleTabChange('previous-predictions')}>Previous Predictions</li>
               <li className={activeTab === 'medical-reports' ? 'active' : ''} onClick={() => handleTabChange('medical-reports')}>Medical Reports</li>
               <li className={activeTab === 'appointment-status' ? 'active' : ''} onClick={() => handleTabChange('appointment-status')}>Appointment Status</li>
               <li className={activeTab === 'update-profile' ? 'active' : ''} onClick={() => handleTabChange('update-profile')}>Update Profile</li>
@@ -80,6 +82,7 @@ const PatientDashboard = () => {
             <div className="content">
               {activeTab === 'search-doctors' && <SearchDoctor/>}
               {activeTab === 'disease-prediction' && <DiseasePrediction/>}
+              {activeTab === 'previous-predictions' && <PreviousPredictions/>}
               {activeTab === 'appointment-status' && <AppointmentStatus/>}
               {activeTab === 'medical-reports' && <MedicalReports/>}
               {activeTab === 'update-profile' && <UpdateDetails/>}
