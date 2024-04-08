@@ -22,9 +22,10 @@ const UpdateAvailableTime = ({ token }) => {
           },
           body: JSON.stringify({ "id": id })
         });
+        console.log(response)
         if (response.ok) {
           const data = await response.json();
-          
+          console.log(data)
           setPreviousAvailability(data.consultants.availabilityTime);
           console.log(previousAvailability)
         } else {
@@ -41,18 +42,11 @@ const UpdateAvailableTime = ({ token }) => {
   }, [token]);
 
   const handleChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setNewAvailability({ ...newAvailability, [name]: value });
   };
 
-  const handleAddAvailability = () => {
-    setAvailability([...availability, newAvailability]);
-    setNewAvailability({
-      day: '',
-      startTime: '',
-      endTime: ''
-    });
-  };
 
   const handleConfirm = async () => {
     try {
@@ -65,7 +59,7 @@ const UpdateAvailableTime = ({ token }) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ availabilityTime: newAvailability })
+        body: JSON.stringify({ availabilityTime:[ newAvailability] })
       });
       if (response.ok) {
         alert('Availability time updated successfully!');
@@ -108,7 +102,7 @@ const UpdateAvailableTime = ({ token }) => {
       <h2>Add Availability Time</h2>
         <label>Day:</label>
         <select name="day" value={newAvailability.day} onChange={handleChange}>
-          <option value="">Select Day</option>
+          <option value="All Day">Select Day</option>
           <option value="Monday">Monday</option>
           <option value="Tuesday">Tuesday</option>
           <option value="Wednesday">Wednesday</option>
