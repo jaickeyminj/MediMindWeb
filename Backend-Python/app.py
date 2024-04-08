@@ -56,13 +56,22 @@ model_urls = [
 # loaded_model5 = mlflow.pyfunc.load_model(model_urls[4])
 # loaded_model6 = mlflow.pyfunc.load_model(model_urls[5])
 # loaded_model7 = mlflow.pyfunc.load_model(model_urls[6])
-loaded_model1 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\LogisticRegression_model']))
-loaded_model2 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\4611a12ea18e4bd388c55dd3b0251ba1\\artifacts\\NeuralNetwork_model']))
-loaded_model3 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\1ce959957e834d438c76d502e74a6470\\artifacts\\NaiveBayes_model']))
-loaded_model4 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\06297adce47a4eb3a11e13ab87f966d5\\artifacts\\SVM_model']))
-loaded_model5 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\2fd14a508a62492bbae1515d69a9393c\\artifacts\\GradientBoosting_model']))
-loaded_model6 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\f26c0d62760e443cbddb8bed5072f7ae\\artifacts\\RandomForest_model']))
-loaded_model7 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\41cb613cadff434bb073a7b2011a676f\\artifacts\\DecisionTree_model']))
+# loaded_model1 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\96b39312b6a347dc8dc8299eafa9a0f7\\artifacts\\LogisticRegression_model']))
+# loaded_model2 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\4611a12ea18e4bd388c55dd3b0251ba1\\artifacts\\NeuralNetwork_model']))
+# loaded_model3 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\1ce959957e834d438c76d502e74a6470\\artifacts\\NaiveBayes_model']))
+# loaded_model4 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\06297adce47a4eb3a11e13ab87f966d5\\artifacts\\SVM_model']))
+# loaded_model5 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\2fd14a508a62492bbae1515d69a9393c\\artifacts\\GradientBoosting_model']))
+# loaded_model6 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\f26c0d62760e443cbddb8bed5072f7ae\\artifacts\\RandomForest_model']))
+# loaded_model7 = mlflow.pyfunc.load_model("".join([current_working_path,'\\mlruns\\0\\41cb613cadff434bb073a7b2011a676f\\artifacts\\DecisionTree_model']))
+
+loaded_model1 = mlflow.pyfunc.load_model("".join([current_working_path,'/mlruns/0/96b39312b6a347dc8dc8299eafa9a0f7/artifacts/LogisticRegression_model']))
+loaded_model2 = mlflow.pyfunc.load_model("".join([current_working_path,'/mlruns/0/4611a12ea18e4bd388c55dd3b0251ba1/artifacts/NeuralNetwork_model']))
+loaded_model3 = mlflow.pyfunc.load_model("".join([current_working_path,'/mlruns/0/1ce959957e834d438c76d502e74a6470/artifacts/NaiveBayes_model']))
+loaded_model4 = mlflow.pyfunc.load_model("".join([current_working_path,'/mlruns/0/06297adce47a4eb3a11e13ab87f966d5/artifacts/SVM_model']))
+loaded_model5 = mlflow.pyfunc.load_model("".join([current_working_path,'/mlruns/0/2fd14a508a62492bbae1515d69a9393c/artifacts/GradientBoosting_model']))
+loaded_model6 = mlflow.pyfunc.load_model("".join([current_working_path,'/mlruns/0/f26c0d62760e443cbddb8bed5072f7ae/artifacts/RandomForest_model']))
+loaded_model7 = mlflow.pyfunc.load_model("".join([current_working_path,'/mlruns/0/41cb613cadff434bb073a7b2011a676f/artifacts/DecisionTree_model']))
+
 
 # Dictionary mapping diagnosis indices to diagnosis names
 prognosis_names = {
