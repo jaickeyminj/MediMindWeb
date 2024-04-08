@@ -7,6 +7,7 @@ const {patientSignup, patientLogin, updatePatientData, validateTokenPatient} = r
 const {consultantSignup, consultantLogin, updateAvailabilityTime, validateTokenConsultant } = require("../Controllers/consultantAuth");
 const { searchConsultantBySpecialty, getAllConsultants, getConsultantsData } = require("../Controllers/searchConsultant");
 const {createAppointment, getallAppointmentsForPatient, getScheduledAppointmentsForConsultant, getRequestedAppointmentList, acceptAppointmentRequest, rejectAppointmentRequest, getMeetingLink } = require("../Controllers/appointment");
+const {addPredictedDisease, updatePredictionStatus, getPredictedDiseases} = require("../Controllers/diseaseprediction");
 
 const { handleAppointment, handleGoogleRedirect,scheduleEvent,redirectToGoogle} = require("../Controllers/meet2");
 const { createRazorpayOrder, createMeetLink} = require("../Config/razorpay");
@@ -25,6 +26,9 @@ router.get("/patient/getallAppointmentsForPatient", getallAppointmentsForPatient
 router.post("/UploadReports",upload.array("files", 12),storeReportLink);
 router.post("/getAllReportIds",getAllReportIds);
 router.post("/getMeetingLink",getMeetingLink);
+router.post("/patient/addPredictedDisease", addPredictedDisease);
+router.post("/patient/updatePredictionStatus", updatePredictionStatus);
+router.post("/patient/getPredictedDiseases", getPredictedDiseases);
 
 //router.post("/patient/uploadReports", upload.single("image"), patientSignup);
 
