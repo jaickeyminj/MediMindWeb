@@ -8,7 +8,7 @@ const AppointmentStatus = () => {
         const fetchAppointments = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('http://localhost:27017/api/v1/patient/getallAppointmentsForPatient', {
+                const response = await fetch('http://medimind.in.net:27017/api/v1/patient/getallAppointmentsForPatient', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const AppointmentStatus = () => {
         try {
             console.log(appointmentId)
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:27017/api/v1/patient/razorpay/order', {
+            const response = await fetch('http://medimind.in.net:27017/api/v1/patient/razorpay/order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const AppointmentStatus = () => {
                     handler: async (response)=> {
                         console.log(response);
                         alert(response.razorpay_order_id);
-                        const meetingLinkResponse = await fetch('http://localhost:27017/api/v1//patient/createMeetLink', {
+                        const meetingLinkResponse = await fetch('http://medimind.in.net:27017/api/v1//patient/createMeetLink', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

@@ -30,7 +30,7 @@ const SearchDoctor = () => {
         setIsLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:27017/api/v1/patient/SearchConsultant', {
+            const response = await fetch('http://medimind.in.net:27017/api/v1/patient/SearchConsultant', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const SearchDoctor = () => {
         event.preventDefault(); // Prevent default form submission behavior
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:27017/api/v1/patient/RequestAppointment', {
+            const response = await fetch('http://medimind.in.net:27017/api/v1/patient/RequestAppointment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

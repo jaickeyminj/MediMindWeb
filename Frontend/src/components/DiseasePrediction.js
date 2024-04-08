@@ -46,7 +46,7 @@ const DiseasePrediction = () => {
 
   const handlePredict = async () => {
     try {
-      const response = await fetch('http://localhost:8000/analyze', {
+      const response = await fetch('http://medimind.in.net:8000/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ const DiseasePrediction = () => {
         console.log(predictedDisease)
         // Post the predicted disease to the specified API
         const token = localStorage.getItem('token');
-        const addPredictedDiseaseResponse = await fetch('http://localhost:27017/api/v1/patient/addPredictedDisease', {
+        const addPredictedDiseaseResponse = await fetch('http://medimind.in.net:27017/api/v1/patient/addPredictedDisease', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -9,7 +9,7 @@ const MedicalReports = () => {
         const fetchReports = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('http://localhost:27017/api/v1/getAllReportIds', {
+                const response = await fetch('http://medimind.in.net:27017/api/v1/getAllReportIds', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -40,7 +40,7 @@ const MedicalReports = () => {
             const token = localStorage.getItem('token');
             const formData = new FormData();
             formData.append('files', selectedFile);
-            const response = await fetch('http://localhost:27017/api/v1/UploadReports', {
+            const response = await fetch('http://medimind.in.net:27017/api/v1/UploadReports', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`

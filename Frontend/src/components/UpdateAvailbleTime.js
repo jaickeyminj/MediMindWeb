@@ -14,7 +14,7 @@ const UpdateAvailableTime = ({ token }) => {
       try {
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('_id');
-        const response = await fetch('http://localhost:27017/api/v1/patient/getConsultantsData', {
+        const response = await fetch('http://medimind.in.net:27017/api/v1/patient/getConsultantsData', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const UpdateAvailableTime = ({ token }) => {
       const token = localStorage.getItem('token');
       const id = localStorage.getItem('_id');
       console.log(newAvailability)
-      const response = await fetch('http://localhost:27017/api/v1/consultant/updateAvailabilityTime', {
+      const response = await fetch('http://medimind.in.net:27017/api/v1/consultant/updateAvailabilityTime', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

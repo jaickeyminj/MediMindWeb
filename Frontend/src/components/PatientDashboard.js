@@ -21,7 +21,7 @@ const PatientDashboard = () => {
           return;
         }
 
-        const response = await fetch('http://localhost:27017/api/v1/patient/validateTokenPatient', {
+        const response = await fetch('http://medimind.in.net:27017/api/v1/patient/validateTokenPatient', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`

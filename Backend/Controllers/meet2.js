@@ -16,7 +16,7 @@ const calendar = google.calendar({
 const oauth2Client = new google.auth.OAuth2(
     "695738836432-q6e95lmhsof2eteblf9m9i1pmg0f5kcm.apps.googleusercontent.com",
     "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",
-    "http://localhost:27017/api/v1/patient/handleGoogleRedirect"
+    "http://medimind.in.net:27017/api/v1/patient/handleGoogleRedirect"
 );
 
 const scopes = [
@@ -233,7 +233,7 @@ async function scheduleEvent(req, res) {
             // Use the token as needed
         })
         .catch(error => {
-            console.error('Error fetching token:', error);
+            console.error('Error fetching oAuth token:', error);
         });
         const calendar1 = google.calendar({
             version: "v3",
@@ -243,7 +243,7 @@ async function scheduleEvent(req, res) {
         const oauth2Client1 = new google.auth.OAuth2(
             "695738836432-q6e95lmhsof2eteblf9m9i1pmg0f5kcm.apps.googleusercontent.com",
             "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",
-            "http://localhost:27017/api/v1/patient/handleGoogleRedirect"
+            "http://medimind.in.net:27017/api/v1/patient/handleGoogleRedirect"
         );
         
         const scopes1 = [

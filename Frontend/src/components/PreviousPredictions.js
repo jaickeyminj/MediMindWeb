@@ -17,7 +17,7 @@ const PreviousPredictions = () => {
 
   const fetchData = async (token) => {
     try {
-      const response = await fetch('http://localhost:27017/api/v1//patient/getPredictedDiseases', {
+      const response = await fetch('http://medimind.in.net:27017/api/v1//patient/getPredictedDiseases', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -37,7 +37,7 @@ const PreviousPredictions = () => {
 
   const handleUpdateStatus = async (predictedDisease, isCorrect) => {
     try {
-      const response = await fetch('http://localhost:27017/api/v1/patient/updatePredictionStatus', {
+      const response = await fetch('http://medimind.in.net:27017/api/v1/patient/updatePredictionStatus', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
