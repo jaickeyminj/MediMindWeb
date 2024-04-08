@@ -8,7 +8,7 @@ const ScheduledAppointments = () => {
     const fetchAppointments = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:27017/api/v1/consultant/getScheduledAppointmentsForConsultant', {
+        const response = await fetch('http://medimind.in.net:27017/api/v1/consultant/getScheduledAppointmentsForConsultant', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`

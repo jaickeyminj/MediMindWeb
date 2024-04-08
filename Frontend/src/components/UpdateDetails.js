@@ -24,7 +24,7 @@ const UpdateDetails = () => {
                 updates: formData
             };
             console.log(requestData)
-            const response = await fetch('http://localhost:27017/api/v1/patient/updatePatientData', {
+            const response = await fetch('http://medimind.in.net:27017/api/v1/patient/updatePatientData', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

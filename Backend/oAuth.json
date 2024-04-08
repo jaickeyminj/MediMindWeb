@@ -23,7 +23,7 @@
   "refreshTokenPromises": {},
   "_clientId": "695738836432-q6e95lmhsof2eteblf9m9i1pmg0f5kcm.apps.googleusercontent.com",
   "_clientSecret": "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",
-  "redirectUri": "http://localhost:27017/api/v1/patient/handleGoogleRedirect",
+  "redirectUri": "http://medimind.in.net:27017/api/v1/patient/handleGoogleRedirect",
   "endpoints": {
     "tokenInfoUrl": "https://oauth2.googleapis.com/tokeninfo",
     "oauth2AuthBaseUrl": "https://accounts.google.com/o/oauth2/v2/auth",

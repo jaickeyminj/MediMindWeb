@@ -5,7 +5,7 @@ var cors = require('cors')
 app.use(cors()) 
 // Set up CORS headers
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); 
+  res.header("Access-Control-Allow-Origin", "http://medimind.in.net:3000"); 
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -35,5 +35,5 @@ app.get('/', (req, res) => {
 
 // Start the Express app and listen on the specified port
 app.listen(PORT, () => {
-    console.log(`App is listening at http://localhost:${PORT}`);
+    console.log(`App is listening at http://medimind.in.net:${PORT}`);
 });
