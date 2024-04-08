@@ -49,13 +49,13 @@ const MedicalReports = () => {
             });
 
             if (response.ok) {
-                console.log('Report uploaded successfully!');
+                alert('Report uploaded successfully!');
                 // Refresh reports or update state as needed
             } else {
-                console.error('Error uploading report:', response.statusText);
+                alert('Error uploading report:', response.statusText);
             }
         } catch (error) {
-            console.error('Error uploading report:', error);
+            alert('Error uploading report:', error);
         }
     };
 

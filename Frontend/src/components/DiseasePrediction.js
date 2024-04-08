@@ -56,8 +56,9 @@ const DiseasePrediction = () => {
   
       if (response.ok) {
         const data = await response.json();
-        const predictedDisease = data.predictedDisease; // Assuming the key for predicted disease is 'predictedDisease' in the response JSON
-        
+        console.log(data)
+        const predictedDisease = data.predictions; // Assuming the key for predicted disease is 'predictedDisease' in the response JSON
+        console.log(predictedDisease)
         // Post the predicted disease to the specified API
         const token = localStorage.getItem('token');
         const addPredictedDiseaseResponse = await fetch('http://localhost:27017/api/v1/patient/addPredictedDisease', {
@@ -66,9 +67,9 @@ const DiseasePrediction = () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({ "predictedDisease": predictedDisease })
+          body: JSON.stringify({  "predictedDisease": predictedDisease })
         });
-  
+        console.log(addPredictedDiseaseResponse)
         if (addPredictedDiseaseResponse.ok) {
           alert(`Prediction Result: ${JSON.stringify(data)}`);
         } else {
