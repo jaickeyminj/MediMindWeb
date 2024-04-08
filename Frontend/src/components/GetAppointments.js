@@ -20,7 +20,7 @@ const GetAppointments = () => {
             if (response.ok) {
                 const data = await response.json();
                 setAppointments(data.appointments);
-                console.log(data)
+                //console.log(data)
             } else {
                 const errorData = await response.json();
                 alert('Failed to fetch appointments: ' + errorData.message);

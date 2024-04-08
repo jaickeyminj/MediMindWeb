@@ -46,18 +46,34 @@ const DiseasePrediction = () => {
 
   const handlePredict = async () => {
     try {
-        console.log(selectedSymptoms.join(' '))
-        const response = await fetch('http://localhost:8000/analyze', {
+      const response = await fetch('http://localhost:8000/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ "symptoms": selectedSymptoms.join(' ') })
       });
-
+  
       if (response.ok) {
         const data = await response.json();
-        alert(`Prediction Result: ${JSON.stringify(data)}`);
+        const predictedDisease = data.predictedDisease; // Assuming the key for predicted disease is 'predictedDisease' in the response JSON
+        
+        // Post the predicted disease to the specified API
+        const token = localStorage.getItem('token');
+        const addPredictedDiseaseResponse = await fetch('http://localhost:27017/api/v1/patient/addPredictedDisease', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ "predictedDisease": predictedDisease })
+        });
+  
+        if (addPredictedDiseaseResponse.ok) {
+          alert(`Prediction Result: ${JSON.stringify(data)}`);
+        } else {
+          alert('Failed to post predicted disease');
+        }
       } else {
         alert('Failed to get prediction result');
       }
@@ -66,6 +82,7 @@ const DiseasePrediction = () => {
       alert('An error occurred while predicting disease');
     }
   };
+  
 
   return (
     <div className="container">
