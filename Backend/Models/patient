@@ -59,6 +59,16 @@ const patientSchema = new mongoose.Schema({
     //   required: true
     // }
   }],
+  diseases: [{
+    predictedDisease: {
+      type: String,
+      required: true
+    },
+    isCorrect: {
+      type: Boolean,
+      default: false 
+    }
+  }],
   feedback: [{
     consultant: {
       type: mongoose.Schema.Types.ObjectId, 
