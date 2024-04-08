@@ -28,8 +28,12 @@ exports.storeReportLink = async (req, res) => {
 
             for (let i = 0; i < req.files.length; i++) {
                 const localFilePath = req.files[i].path;
+
+                
+
                 const result = await cloudinary.uploader.upload(localFilePath);
                 const imageUrl = result.url;
+                console.log(imageUrl);
                 //const description = req.files[i].fd; 
                 
                 reportDetails.push({ report: imageUrl });
