@@ -43,7 +43,7 @@ const AppointmentStatus = () => {
                 },
                 body: JSON.stringify({ "appointmentId": appointmentId, "amount": amount })
             });
-           <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
             if (response.ok) {
                 const order = await response.json();
                 console.log(order)
@@ -59,17 +59,32 @@ const AppointmentStatus = () => {
                         console.log(response);
                         alert(response.razorpay_order_id);
                         const response1 = await fetch('http://localhost:27017/api/v1//patient/createMeetLink', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        },
-                        body: JSON.stringify({ "appointmentId": appointmentId, "amount": amount })
-                        
-                    });
-                        console.log(response1);
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ "appointmentId": appointmentId })
+                        });
 
-                        // You can handle success response here
+                        if (meetingLinkResponse.ok) {
+                            const meetingLinkData = await meetingLinkResponse.json();
+                            console.log('Meeting Link:', meetingLinkData.link);
+                            // Update the appointment status with the meeting link
+                            setAppointments(prevAppointments => {
+                                return prevAppointments.map(appointment => {
+                                    if (appointment._id === appointmentId) {
+                                        return {
+                                            ...appointment,
+                                            meetingLink: meetingLinkData.link
+                                        };
+                                    }
+                                    return appointment;
+                                });
+                            });
+                        } else {
+                            console.error('Error fetching meeting link:', meetingLinkResponse.statusText);
+                        }
                     },
                     prefill: {
                         name: "Saurabh Singh", // your customer's name
@@ -109,6 +124,7 @@ const AppointmentStatus = () => {
                                 <th>Payment Status</th>
                                 <th>Confirmation Status</th>
                                 <th>Payment Link</th>
+                                <th>Meeting Link</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -125,6 +141,7 @@ const AppointmentStatus = () => {
                                             <button onClick={() => handlePayment(appointment._id, appointment.fee)}>Pay Fee</button>
                                         )}
                                     </td>
+                                    <td>{appointment.meetingLink || '-'}</td>
                                 </tr>
                             ))}
                         </tbody>
