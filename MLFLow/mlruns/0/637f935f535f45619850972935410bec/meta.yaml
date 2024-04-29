@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Computer%20System%20Design/MLFlow/mlruns/0/637f935f535f45619850972935410bec/artifacts
+end_time: 1711792718637
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 637f935f535f45619850972935410bec
+run_name: painted-frog-244
+run_uuid: 637f935f535f45619850972935410bec
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711792716987
+status: 3
+tags: []
+user_id: jaick
