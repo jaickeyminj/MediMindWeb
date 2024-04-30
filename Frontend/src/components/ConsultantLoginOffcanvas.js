@@ -167,15 +167,6 @@ const ConsultantLoginOffcanvas = ({ onClose }) => {
                     <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
                   </div>
                   <div className="form-group">
-                    <input type="text" name="address.city" placeholder="City" value={formData.address.city} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group">
-                    <input type="text" name="address.state" placeholder="State" value={formData.address.state} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group">
-                    <input type="text" name="address.country" placeholder="Country" value={formData.address.country} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group">
                     <select name="gender" value={formData.gender} onChange={handleChange} required>
                       <option value="">Select Gender</option>
                       <option value="Male">Male</option>
@@ -183,8 +174,43 @@ const ConsultantLoginOffcanvas = ({ onClose }) => {
                       <option value="Other">Other</option>
                     </select>
                   </div>
+                  {/* <div className="form-group"> */}
                   <div className="form-group">
-                    <input type="text" name="specification" placeholder="Specification" value={formData.specification} onChange={handleChange} required />
+                        <select name="specification" value={formData.specification} onChange={handleChange} required>
+                        <option value="">Select Specialization</option>
+                        <option value="General Physician">General Physician</option>
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Dermatologist">Dermatologist</option>
+                        <option value="Ophthalmologist">Ophthalmologist</option>
+                        <option value="Orthopedic Surgeon">Orthopedic Surgeon</option>
+                        <option value="Pediatrician">Pediatrician</option>
+                        <option value="Gynecologist">Gynecologist</option>
+                        <option value="Neurologist">Neurologist</option>
+                        <option value="Psychiatrist">Psychiatrist</option>
+                        <option value="Endocrinologist">Endocrinologist</option>
+                        <option value="Gastroenterologist">Gastroenterologist</option>
+                        <option value="Urologist">Urologist</option>
+                        <option value="Oncologist">Oncologist</option>
+                        <option value="ENT Specialist">ENT Specialist</option>
+                        <option value="Pulmonologist">Pulmonologist</option>
+                        <option value="Radiologist">Radiologist</option>
+                        <option value="Nephrologist">Nephrologist</option>
+                        <option value="Rheumatologist">Rheumatologist</option>
+                        <option value="Allergist">Allergist</option>
+                        <option value="Dentist">Dentist</option>
+                        <option value="Oncologist">Oncologist</option>
+                        <option value="Ophthalmologist">Ophthalmologist</option>
+                        <option value="Podiatrist">Podiatrist</option>
+                        <option value="Psychologist">Psychologist</option>
+                        <option value="Radiation Oncologist">Radiation Oncologist</option>
+                        <option value="Pathologist">Pathologist</option>
+                        <option value="Plastic Surgeon">Plastic Surgeon</option>
+                        <option value="Pulmonologist">Pulmonologist</option>
+                        <option value="Rheumatologist">Rheumatologist</option>
+                        <option value="Sports Medicine Physician">Sports Medicine Physician</option>
+                        <option value="Surgeon">Surgeon</option>
+                        <option value="Urologist">Urologist</option>
+                    </select>
                   </div>
                   <div className="form-group">
                     <input type="text" name="mobileNo" placeholder="Mobile Number" value={formData.mobileNo} onChange={handleChange} required />
@@ -193,7 +219,16 @@ const ConsultantLoginOffcanvas = ({ onClose }) => {
                     <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
                   </div>
                   <div className="form-group">
-                    <input type="number" name="charge" placeholder="Charge" value={formData.charge} onChange={handleChange} required />
+                    <input type="number" name="charge" placeholder="fee" value={formData.charge} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group">
+                    <input type="text" name="address.city" placeholder="City" value={formData.address.city} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group">
+                    <input type="text" name="address.state" placeholder="State" value={formData.address.state} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group">
+                    <input type="text" name="address.country" placeholder="Country" value={formData.address.country} onChange={handleChange} required />
                   </div>
                   <button type="submit">Register</button>
                   <p onClick={toggleMode}>Already a consultant? Login here.</p>

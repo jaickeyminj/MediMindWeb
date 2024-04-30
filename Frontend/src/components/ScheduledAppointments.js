@@ -39,8 +39,9 @@ const ScheduledAppointments = () => {
             <div>Date: {appointment.date}</div>
             <div>Time: {appointment.time}</div>
             <div>Status: {appointment.status}</div>
-            <div>Fee: {appointment.fee}</div>
+            <div>Payment: {appointment.isPaid===true?<p>✔</p>:<p>❌</p>}</div>
             <div>Duration: {appointment.duration} mins</div>
+            <div>Meeting Link: {<a href={appointment.meetingLink}>Join</a> || " - "}</div>
           </li>
         ))}
       </ul>
